@@ -1,0 +1,29 @@
+import { ZPLKit } from '@zpl-kit/react-zpl';
+import './App.css';
+
+function App() {
+  return (
+    <div className="app">
+      <header className="app-header">
+        <h1>ZPL Kit - Web Demo</h1>
+        <p>React ZPL 라이브러리 웹 데모</p>
+      </header>
+      <main className="app-main">
+        <ZPLKit>
+          <div className="demo-content">
+            <h2>ZPL Kit 컴포넌트</h2>
+            <p>여기서 ZPL Kit 기능을 테스트할 수 있습니다.</p>
+            <div className="demo-box">
+              <p>ZPL Kit 컴포넌트가 정상적으로 로드되었습니다.</p>
+              <p>
+                이 컴포넌트는 <code>@zpl-kit/react-zpl</code>에서 가져왔습니다.
+              </p>
+            </div>
+          </div>
+        </ZPLKit>
+      </main>
+    </div>
+  );
+}
+
+export default App;

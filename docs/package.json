@@ -1,0 +1,17 @@
+{
+  "name": "docs",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "rspress dev --port 8000",
+    "build": "rspress build",
+    "preview": "rspress preview"
+  },
+  "dependencies": {
+    "@rspress/core": "^1.0.0"
+  },
+  "devDependencies": {
+    "rspress": "^1.46.1"
+  }
+}
