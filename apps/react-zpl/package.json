@@ -13,8 +13,8 @@
     }
   },
   "scripts": {
-    "dev": "rolldown --watch",
-    "build": "rolldown",
+    "dev": "rolldown --watch -c rolldown.config.ts",
+    "build": "rolldown -c rolldown.config.ts",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
