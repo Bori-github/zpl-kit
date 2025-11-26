@@ -1,0 +1,236 @@
+# ZPL 명령어 참조 가이드
+
+이 문서는 ZPL (Zebra Programming Language) 명령어 참조 가이드입니다.
+
+## ZPL 명령어
+
+| 명령어 | 형식 | 설명 |
+|--------|------|------|
+| `^A` | `^Afo,h,w,d:f.x` | 확장 가능/비트맵 폰트 사용 |
+| `^A@` | `^A@o,h,w,d:f.x` | 폰트 이름으로 폰트 호출 |
+| `^B0` | `^B0a,b,c,d,e,f,g` | Aztec 바코드 파라미터 |
+| `^B1` | `^B1o,e,h,f,g` | Code 11 바코드 |
+| `^B2` | `^B2o,h,f,g,e,j` | Interleaved 2 of 5 바코드 |
+| `^B3` | `^B3o,e,h,f,g` | Code 39 바코드 |
+| `^B4` | `^B4o,h,f,m` | Code 49 바코드 |
+| `^B5` | `^B5o,h,f,g` | Planet Code 바코드 |
+| `^B7` | `^B7o,h,s,c,r,t` | PDF417 바코드 |
+| `^B8` | `^B8o,h,f,g` | EAN-8 바코드 |
+| `^B9` | `^B9o,h,f,g,e` | UPC-E 바코드 |
+| `^BA` | `^BAo,h,f,g,e` | Code 93 바코드 |
+| `^BB` | `^BBo,h,s,c,r,m` | CODABLOCK 바코드 |
+| `^BC` | `^BCo,h,f,g,e,m` | Code 128 바코드 (서브셋 A, B, C) |
+| `^BD` | `^BDm,n,t` | UPS MaxiCode 바코드 |
+| `^BE` | `^BEo,h,f,g` | EAN-13 바코드 |
+| `^BF` | `^BFo,h,m` | MicroPDF417 바코드 |
+| `^BI` | `^BIo,h,f,g` | Industrial 2 of 5 바코드 |
+| `^BJ` | `^BJo,h,f,g` | Standard 2 of 5 바코드 |
+| `^BK` | `^BKo,e,h,f,g,k,l` | ANSI Codabar 바코드 |
+| `^BL` | `^BLo,h,g` | LOGMARS 바코드 |
+| `^BM` | `^BMo,e,h,f,g,e2` | MSI 바코드 |
+| `^BO` | `^BOa,b,c,d,e,f,g` | Aztec 바코드 파라미터 |
+| `^BP` | `^BPo,e,h,f,g` | Plessey 바코드 |
+| `^BQ` | `^BQa,b,c,d,e` | QR 코드 바코드 |
+| `^BR` | `^BRa,b,c,d,e,f` | GS1 Databar |
+| `^BS` | `^BSo,h,f,g` | UPC/EAN 확장 |
+| `^BT` | `^BTo,w1,r1,h1,w2,h2` | TLC39 바코드 |
+| `^BU` | `^BUo,h,f,g,e` | UPC-A 바코드 |
+| `^BX` | `^BXo,h,s,c,r,f,g,a` | Data Matrix 바코드 |
+| `^BY` | `^BYw,r,h` | 바코드 필드 기본값 |
+| `^BZ` | `^BZo,h,f,g,t` | POSTAL 바코드 |
+| `^CC` | `^CCx` 또는 `~CCx` | 캐럿 변경 (대체: ~CC) |
+| `^CD` | `^CDa` 또는 `~CDa` | 구분자 변경 (대체: ~CD) |
+| `^CF` | `^CFf,h,w` | 영숫자 기본 폰트 변경 |
+| `^CI` | `^CIa,s1,d1,s2,d2,...` | 국제 폰트/인코딩 변경 |
+| `^CM` | `^CMa,b,c,d` | 메모리 문자 지정 변경 |
+| `^CN` | `^CNa` | 지금 자르기 |
+| `^CO` | `^COa,b,c` | 캐시 켜기 |
+| `^CP` | `^CPa` | 라벨 제거 |
+| `^CT` | `^CTa` 또는 `~CTa` | 틸드 변경 (대체: ~CT) |
+| `^CV` | `^CVa` | 코드 검증 |
+| `^CW` | `^CWa,d:o.x` | 폰트 식별자 |
+| `~DB` | `~DBd:o.x,a,h,w,base,space,#char,©,data` | 비트맵 폰트 다운로드 |
+| `~DE` | `~DEd:o.x,s,data` | 인코딩 다운로드 |
+| `^DF` | `^DFd:o.x` | 포맷 다운로드 |
+| `~DG` | `~DGd:o.x,t,w,data` | 그래픽 다운로드 |
+| `~DN` | `~DN` | 그래픽 다운로드 중단 |
+| `~DS` | `~DSd:o.x,s,data` | Intellifont 다운로드 (확장 가능 폰트) |
+| `~DT` | `~DTd:o.x,s,data` | 경계 TrueType 폰트 다운로드 |
+| `~DU` | `~DUd:o.x,s,data` | 무경계 TrueType 폰트 다운로드 |
+| `~DY` | `~DYd:f,b,x,t,w,data` | 객체 다운로드 |
+| `~EG` | `~EG` 또는 `^EG` | 모든 그래픽 지우기 (대체: ^EG) |
+| `^FB` | `^FBa,b,c,d,e` | 필드 블록 |
+| `^FC` | `^FCa,b,c` | 필드 클럭 |
+| `^FD` | `^FDa` | 필드 데이터 |
+| `^FH` | `^FHa` | 필드 16진수 표시기 |
+| `^FL` | `^FL,,` | 폰트 링킹 |
+| `^FM` | `^FMx1,y1,x2,y2,...` | 다중 필드 원점 위치 |
+| `^FN` | `^FN#"a"` | 필드 번호 |
+| `^FO` | `^FOx,y,z` | 필드 원점 |
+| `^FP` | `^FPd,g` | 필드 파라미터 |
+| `^FR` | `^FR` | 필드 반전 인쇄 |
+| `^FS` | `^FS` | 필드 구분자 |
+| `^FT` | `^FTx,y,z` | 필드 조판 |
+| `^FV` | `^FVa` | 필드 변수 |
+| `^FW` | `^FWr,z` | 필드 방향 |
+| `^FX` | `^FXc` | 주석 |
+| `^GB` | `^GBw,h,t,c,r` | 그래픽 박스 |
+| `^GC` | `^GCd,t,c` | 그래픽 원 |
+| `^GD` | `^GDw,h,t,c,o` | 그래픽 대각선 |
+| `^GE` | `^GEw,h,t,c` | 그래픽 타원 |
+| `^GF` | `^GFa,b,c,d,data` | 그래픽 필드 |
+| `^GS` | `^GSo,h,w` | 그래픽 심볼 |
+| `~HB` | `~HB` | 배터리 상태 반환 |
+| `~HD` | `~HD` | 헤드 진단 반환 |
+| `^HF` | `^HFd,o,x` | 호스트 포맷 반환 |
+| `^HG` | `^HGd:o.x` | 호스트 그래픽 반환 |
+| `^HH` | `^HH` | 구성 라벨 반환 |
+| `~HI` | `~HI` | 호스트 식별 반환 |
+| `~HM` | `~HM` | 호스트 RAM 상태 반환 |
+| `~HQ` | `~HQquery-type` | 호스트 쿼리 반환 |
+| `~HS` | `~HS` | 호스트 상태 반환 |
+| `~HU` | `~HU` | ZebraNet 경고 구성 반환 |
+| `^HV` | `^HV#,n,h,t,a` | 호스트 검증 반환 |
+| `^HW` | `^HWd:o.x` | 호스트 디렉토리 목록 반환 |
+| `^HY` | `^HYd:o.x` | 그래픽 업로드 |
+| `^HZ` | `^HZb` | 설명 정보 표시 |
+| `^HZ` | `^HZO,d:o.x,l` | 설명 정보 표시 |
+| `^ID` | `^IDd:o.x` | 객체 삭제 |
+| `^IL` | `^ILd:o.x` | 이미지 로드 |
+| `^IM` | `^IMd:o.x` | 이미지 이동 |
+| `^IS` | `^ISd:o.x,p` | 이미지 저장 |
+| `~JA` | `~JA` | 모두 취소 |
+| `^JB` | `^JBa` | 플래시 메모리 초기화 |
+| `~JB` | `~JB` | 선택적 메모리 재설정 |
+| `~JC` | `~JC` | 미디어 센서 보정 설정 |
+| `~JD` | `~JD` | 통신 진단 활성화 |
+| `~JE` | `~JE` | 진단 비활성화 |
+| `~JF` | `~JFp` | 배터리 상태 설정 |
+| `~JG` | `~JG` | 그래핑 센서 보정 |
+| `^JH` | `^JHa,b,c,d,e,f,g,h,i,j` | 조기 경고 설정 |
+| `^JI` | `^JId:o.x,b,c,d` | Zebra BASIC 인터프리터 시작 |
+| `~JI` | `~JI` | Zebra BASIC 인터프리터 시작 |
+| `^JJ` | `^JJa,b,c,d,e,f` | 보조 포트 설정 |
+| `~JK` | `~JK` | 지연 자르기 |
+| `~JL` | `~JL` | 라벨 길이 설정 |
+| `^JM` | `^JMn` | 밀리미터당 도트 수 설정 |
+| `~JN` | `~JN` | 헤드 테스트 치명적 오류 |
+| `~JO` | `~JO` | 헤드 테스트 비치명적 오류 |
+| `~JP` | `~JP` | 일시 정지 및 포맷 취소 |
+| `~JQ` | `~JQ` | Zebra BASIC 인터프리터 종료 |
+| `~JR` | `~JR` | 전원 켜기 재설정 |
+| `^JS` | `^JSa` | 센서 선택 |
+| `~JS` | `~JSb` | 역공급 시퀀스 변경 |
+| `^JT` | `^JT####,a,b,c` | 헤드 테스트 간격 |
+| `^JU` | `^JUa` | 구성 업데이트 |
+| `^JW` | `^JWt` | 리본 장력 설정 |
+| `~JX` | `~JX` | 현재 부분 입력 포맷 취소 |
+| `^JZ` | `^JZa` | 오류 후 재인쇄 |
+| `~KB` | `~KB` | 배터리 방전 모드 (배터리 방전) |
+| `^KD` | `^KDa` | 날짜 및 시간 형식 선택 (실시간 클럭용) |
+| `^KL` | `^KLa` | 언어 정의 |
+| `^KN` | `^KNa,b` | 프린터 이름 정의 |
+| `^KP` | `^KPa,b` | 비밀번호 정의 |
+| `^KV` | `^KVa,b,c,d,e` | 키오스크 값 |
+| `^LF` | `^LF` | 폰트 링크 인쇄 |
+| `^LH` | `^LHx,y` | 라벨 홈 |
+| `^LL` | `^LLy` | 라벨 길이 |
+| `^LR` | `^LRa` | 라벨 반전 인쇄 |
+| `^LS` | `^LSa` | 라벨 이동 |
+| `^LT` | `^LTx` | 라벨 상단 |
+| `^MA` | `^MAtype,print,threshold,frequency,units` | 유지보수 경고 설정 |
+| `^MC` | `^MCa` | 맵 지우기 |
+| `^MD` | `^MDa` | 미디어 어둡기 |
+| `^MF` | `^MFp,h` | 미디어 공급 |
+| `^MI` | `^MItype,message` | 유지보수 정보 메시지 설정 |
+| `^ML` | `^MLa` | 최대 라벨 길이 |
+| `^MM` | `^MMa,b` | 인쇄 모드 |
+| `^MN` | `^MNa,b` | 미디어 추적 |
+| `^MP` | `^MPa` | 모드 보호 |
+| `^MT` | `^MTa` | 미디어 타입 |
+| `^MU` | `^MUa,b,c` | 측정 단위 설정 |
+| `^MW` | `^MWa` | 헤드 냉각 경고 수정 |
+| `^NC` | `^NCa` | 기본 네트워크 장치 선택 |
+| `~NC` | `~NC###` | 네트워크 연결 |
+| `^ND` | `^NDa,b,c,d,e,f,g,h,i,j` | 네트워크 설정 변경 |
+| `^NI` | `^NI###` | 네트워크 ID 번호 |
+| `~NR` | `~NR` | 모든 네트워크 프린터 투명 모드 설정 |
+| `^NS` | `^NSa,b,c,d,e,f,g,h,i` | 유선 네트워킹 설정 변경 |
+| `~NT` | `~NT` | 현재 연결된 프린터 투명 모드 설정 |
+| `^PA` | `^PAa,b,c,d` | 고급 텍스트 속성 |
+| `^PF` | `^PF#` | 지정된 도트 행 수만큼 이동 |
+| `^PH` | `^PH` 또는 `~PH` | 홈 위치로 이동 (대체: ~PH) |
+| `~PL` | `~PLa` | 현재 길이 추가 |
+| `^PM` | `^PMa` | 라벨 미러 이미지 인쇄 |
+| `^PN` | `^PNa` | 지금 제시 |
+| `^PO` | `^POa` | 인쇄 방향 |
+| `^PP` | `^PP` 또는 `~PP` | 프로그래밍 가능한 일시 정지 (대체: ~PP) |
+| `^PQ` | `^PQq,p,r,o,e` | 인쇄 수량 |
+| `~PR` | `~PR` | 적용기 재인쇄 |
+| `^PR` | `^PRp,s,b` | 인쇄 속도 |
+| `~PS` | `~PS` | 인쇄 시작 |
+| `^PW` | `^PWa` | 인쇄 너비 |
+| `~RO` | `~ROc` | 고급 카운터 재설정 |
+| `^SC` | `^SCa,b,c,d,e,f` | 시리얼 통신 설정 |
+| `~SD` | `~SD##` | 어둡기 설정 |
+| `^SE` | `^SEd:o.x` | 인코딩 테이블 선택 |
+| `^SF` | `^SFa,b` | 직렬화 필드 (표준 ^FD와 함께) |
+| `^SI` | `^SIa,b` | 센서 강도 설정 |
+| `^SL` | `^SLa,b` | 모드 및 언어 설정 (실시간 클럭용) |
+| `^SN` | `^SNv,n,z` | 직렬화 데이터 |
+| `^SO` | `^SOa,b,c,d,e,f,g` | 오프셋 설정 (실시간 클럭용) |
+| `^SP` | `^SP#` | 인쇄 시작 |
+| `^SQ` | `^SQa,b,c` | ZebraNet 경고 중지 |
+| `^SR` | `^SR####` | 인쇄 헤드 저항 설정 |
+| `^SS` | `^SSw,m,r,l,m2,r2,a,b,c` | 미디어 센서 설정 |
+| `^ST` | `^STa,b,c,d,e,f,g` | 날짜 및 시간 설정 (실시간 클럭용) |
+| `^SX` | `^SXa,b,c,d,e,f` | ZebraNet 경고 설정 |
+| `^SZ` | `^SZa` | ZPL 모드 설정 |
+| `~TA` | `~TA###` | 찢기 조정 위치 |
+| `^TB` | `^TBa,b,c` | 텍스트 블록 |
+| `^TO` | `^TOs:o.x,d:o.x` | 객체 전송 |
+| `~WC` | `~WC` | 구성 라벨 인쇄 |
+| `^WD` | `^WDd:o.x` | 디렉토리 라벨 인쇄 |
+| `~WQ` | `~WQquery-type` | 쿼리 작성 |
+| `^XA` | `^XA` | 포맷 시작 |
+| `^XB` | `^XB` | 역공급 억제 |
+| `^XF` | `^XFd:o.x` | 포맷 호출 |
+| `^XG` | `^XGd:o.x,mx,my` | 그래픽 호출 |
+| `^XS` | `^XSlength,threshold` | 동적 미디어 보정 설정 |
+| `^XZ` | `^XZ` | 포맷 종료 |
+| `^ZZ` | `^ZZt,b` | 프린터 절전 모드 |
+
+## 명령어 파라미터 설명
+
+### 공통 파라미터
+
+- **o (orientation)**: 방향 (N=정상, R=90도 회전, I=180도 회전, B=270도 회전)
+- **h (height)**: 높이 (dots 단위)
+- **w (width)**: 너비 (dots 단위)
+- **x, y**: 좌표 위치 (dots 단위)
+- **z**: Z 좌표 (3D 위치 지정)
+- **f (field number)**: 필드 번호
+- **g (gap)**: 간격
+- **e (check digit)**: 체크 디지트
+- **m (mode)**: 모드
+- **s (security level)**: 보안 레벨
+- **c (columns)**: 열 수
+- **r (rows)**: 행 수
+- **t (type)**: 타입
+- **a, b, c, d, e, f, g, h, i, j, k, l, m, n**: 명령어별 특정 파라미터
+
+### 폰트 크기 (Font 0)
+
+폰트 P부터 V까지는 Font 0의 미리 정의된 크기입니다:
+
+- **P**: 20x18
+- **Q**: 28x24
+- **R**: 36x30
+- **S**: 40x36
+- **T**: 48x42
+- **U**: 60x54
+- **V**: 80x72
+
+## 참고 자료
+
+- [ZPL Quick Reference (GitHub Gist)](https://gist.github.com/metafloor/773bc61480d1d05a976184d45099ef56)
