@@ -1,11 +1,23 @@
+# 의존성 및 패키지 관리
 node_modules
-dist
-build
-.next
-.nuxt
-.cache
+
+# 빌드 출력물
+dist/
+build/
+docs/doc_build/
+
+# 프레임워크별 빌드/캐시 디렉토리
+.cache         # 일반 캐시 디렉토리
+
+# 테스트 커버리지
 coverage
-.DS_Store
+
+# 운영체제 파일
+.DS_Store      # macOS 시스템 파일
+
+# 로그 파일
 *.log
+
+# 환경 변수 파일
 .env.local
 .env*.local
