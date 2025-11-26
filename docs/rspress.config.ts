@@ -8,7 +8,7 @@ export default defineConfig({
     nav: [
       {
         text: "Guide",
-        link: "/guide/getting-started",
+        link: "/guide/introduction",
       },
     ],
     sidebar: {
