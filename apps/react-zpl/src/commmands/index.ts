@@ -4,3 +4,4 @@ export * from "./newLine";
 export * from "./printWidth";
 export * from "./labelLength";
 export * from "./labelHome";
+export * from "./fieldBlock";
