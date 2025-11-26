@@ -9,3 +9,4 @@ export * from "./fieldData";
 export * from "./fieldOrientation";
 export * from "./fieldOrigin";
 export * from "./fieldFont";
+export * from "./changeDefaultFont";
