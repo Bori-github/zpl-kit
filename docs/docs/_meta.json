@@ -3,5 +3,10 @@
     "text": "Guide",
     "link": "/guide/introduction",
     "activeMatch": "/guide/"
+  },
+  {
+    "text": "ZPL Commands Reference",
+    "link": "/zpl-commands/reference",
+    "activeMatch": "/zpl-commands/"
   }
 ]
