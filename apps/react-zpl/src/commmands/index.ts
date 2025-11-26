@@ -6,3 +6,4 @@ export * from "./labelLength";
 export * from "./labelHome";
 export * from "./fieldBlock";
 export * from "./fieldData";
+export * from "./fieldOrientation";
