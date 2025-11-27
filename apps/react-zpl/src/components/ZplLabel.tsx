@@ -46,7 +46,7 @@ ZplLabel.print = (element: ReactElement<ZplLabelProps>) => {
   // Set label size, orientation, home position
   output.push(printWidth(width));
   output.push(labelLength(height));
-  output.push(fieldOrientation(labelOrientation));
+  output.push(fieldOrientation({ orientation: labelOrientation }));
   output.push(labelHome({ offsetX, offsetY }));
 
   // TODO: add zpl commands
