@@ -1,10 +1,15 @@
+import { useState } from "react";
+
 import { ZplLabel } from "@zpl-kit/react-zpl";
 
 import "./App.css";
-import { useState } from "react";
 
 const TestLabel = ({ text }: { text: string }) => {
-  return <ZplLabel>{text}</ZplLabel>;
+  return (
+    <ZplLabel width={100} height={100} labelOrientation="R">
+      {text}
+    </ZplLabel>
+  );
 };
 
 function App() {
