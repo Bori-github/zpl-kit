@@ -1,9 +1,25 @@
 import { PropsWithChildren, ReactElement } from "react";
 
-import { endFormat, newLine, startFormat } from "../commands";
+import {
+  endFormat,
+  fieldOrientation,
+  labelHome,
+  labelLength,
+  newLine,
+  printWidth,
+  startFormat,
+} from "../commands";
 import { printChildren } from "../utils";
+import { ObjectValues } from "../types";
+import { ORIENTATION } from "../constants";
 
-export interface ZplLabelProps extends PropsWithChildren {}
+export interface ZplLabelProps extends PropsWithChildren {
+  width: number; // dots
+  height: number; // dots
+  offsetX?: number; // dots
+  offsetY?: number; // dots
+  labelOrientation?: ObjectValues<typeof ORIENTATION>;
+}
 
 export const ZplLabel = ({ children }: ZplLabelProps) => {
   return <div>{children}</div>;
@@ -12,12 +28,26 @@ export const ZplLabel = ({ children }: ZplLabelProps) => {
 ZplLabel.displayName = "ZplLabel";
 
 ZplLabel.print = (element: ReactElement<ZplLabelProps>) => {
+  const {
+    width,
+    height,
+    offsetX = 0,
+    offsetY = 0,
+    labelOrientation = ORIENTATION.NO_ROTATION,
+  } = element.props;
+  // TODO: improve context
   const context = {};
 
   const output = [];
 
   // Start format
   output.push(startFormat());
+
+  // Set label size, orientation, home position
+  output.push(printWidth(width));
+  output.push(labelLength(height));
+  output.push(fieldOrientation(labelOrientation));
+  output.push(labelHome({ offsetX, offsetY }));
 
   // TODO: add zpl commands
 
