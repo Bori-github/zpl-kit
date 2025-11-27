@@ -1,1 +1,1 @@
-export { default as ZPLKit } from './ZPLKit';
+export * from "./ZplLabel";
