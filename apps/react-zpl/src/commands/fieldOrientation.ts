@@ -3,8 +3,10 @@ import { defineCommand } from "./base";
 import { ORIENTATION } from "../constants";
 import { ObjectValues } from "../types";
 
-type FieldOrientationParams = ObjectValues<typeof ORIENTATION>;
+interface FieldOrientationParams {
+  orientation?: ObjectValues<typeof ORIENTATION>;
+}
 
 export const fieldOrientation = defineCommand<FieldOrientationParams>(
-  (orientation = "N") => `^FW${orientation}`,
+  ({ orientation = ORIENTATION.NO_ROTATION }) => `^FW${orientation}`,
 );
