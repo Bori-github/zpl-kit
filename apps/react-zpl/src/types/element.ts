@@ -41,3 +41,18 @@ export interface ZplElement<Props = unknown> {
    */
   print: (element: ReactElement<Props>, context: ZplElementContext) => string;
 }
+
+/**
+ * 주어진 요소가 ZplElement인지 확인하는 타입 가드 함수
+ *
+ * @param element - 검증할 요소
+ * @returns 요소가 ZplElement면 `true`, 그렇지 않으면 `false`
+ *
+ * @see {@link ZplElement} - 검증 대상 인터페이스
+ */
+export function isZplElement(element: unknown): element is ZplElement {
+  return (
+    typeof element === "function" &&
+    typeof (element as ZplElement).print === "function"
+  );
+}

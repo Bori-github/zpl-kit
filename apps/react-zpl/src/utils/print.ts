@@ -1,7 +1,7 @@
 import { isValidElement, ReactNode } from "react";
 
 import { renderReactElement } from "./render";
-import { ZplElementContext } from "../types";
+import { isZplElement, ZplElementContext } from "../types";
 
 /**
  * 단일 React 노드를 재귀적으로 순회하면서 자식 노드를 ZPL 렌더링 파이프라인에 맞게 처리하는 헬퍼
@@ -22,8 +22,9 @@ export const printChild = (
     if (!isValidElement(element)) return;
 
     // TODO: print element with context
-
-    if (node.props.children) {
+    if (isZplElement(element.type)) {
+      children.push(element.type.print(element, context));
+    } else if (node.props.children) {
       children.push(printChild(node.props.children, context));
     }
   }
