@@ -10,7 +10,7 @@ import {
   startFormat,
 } from "../commands";
 import { printChildren } from "../utils";
-import { ObjectValues } from "../types";
+import { ObjectValues, ZplElement, ZplElementContext } from "../types";
 import { ORIENTATION } from "../constants";
 
 export interface ZplLabelProps extends PropsWithChildren {
@@ -21,7 +21,7 @@ export interface ZplLabelProps extends PropsWithChildren {
   labelOrientation?: ObjectValues<typeof ORIENTATION>;
 }
 
-export const ZplLabel = ({ children }: ZplLabelProps) => {
+export const ZplLabel: ZplElement<ZplLabelProps> = ({ children }) => {
   return <div>{children}</div>;
 };
 
@@ -36,7 +36,7 @@ ZplLabel.print = (element: ReactElement<ZplLabelProps>) => {
     labelOrientation = ORIENTATION.NO_ROTATION,
   } = element.props;
   // TODO: improve context
-  const context = {};
+  const context: ZplElementContext = {};
 
   const output = [];
 
