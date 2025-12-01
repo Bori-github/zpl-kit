@@ -1,3 +1,5 @@
+import { ReactElement } from "react";
+
 /**
  * ZPL 명령어 생성에 필요한 컨텍스트 정보
  *
@@ -10,3 +12,32 @@
  * @see {@link ZplElement} - 이 컨텍스트를 사용하는 인터페이스
  */
 export interface ZplElementContext {}
+
+/**
+ * ZPL 명령어를 생성할 수 있는 React 컴포넌트를 정의하는 인터페이스
+ *
+ * @see {@link PrintableElementContext} - print 메서드에서 사용하는 컨텍스트 타입
+ */
+export interface ZplElement<Props = unknown> {
+  /**
+   * 컴포넌트 식별자
+   */
+  displayName: string;
+
+  /**
+   * React 컴포넌트 함수 시그니처
+   *
+   * @param props - 컴포넌트가 받는 props
+   * @returns 렌더링된 JSX 엘리먼트
+   */
+  (props: Props): JSX.Element;
+
+  /**
+   * ReactElement를 ZPL 명령어 문자열로 변환하는 메서드
+   *
+   * @param element - 변환할 React 엘리먼트 (자신의 props를 포함)
+   * @param context - ZPL 명령어 생성에 필요한 컨텍스트 정보
+   * @returns ZPL 명령어 문자열
+   */
+  print: (element: ReactElement<Props>, context: ZplElementContext) => string;
+}
