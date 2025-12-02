@@ -3,15 +3,27 @@ import { ObjectValues, ZplElementContext } from "../types";
 import { ORIENTATION } from "../constants";
 import { fieldData, fieldFont, fieldOrigin, newLine } from "../commands";
 
-interface TextProps extends PropsWithChildren {
+interface BaseTextProps extends PropsWithChildren {
   fieldOriginX?: number;
   fieldOriginY?: number;
-  fontName?: string;
-  fontWidth?: number;
-  fontHeight?: number;
   fieldOrientation?: ObjectValues<typeof ORIENTATION>;
-  fontInherit?: boolean;
 }
+
+interface TextFontInheritProps extends BaseTextProps {
+  fontInherit?: true;
+  fontName?: never;
+  fontWidth?: never;
+  fontHeight?: never;
+}
+
+interface TextNotFontInheritProps extends BaseTextProps {
+  fontInherit: false;
+  fontName: string;
+  fontWidth: number;
+  fontHeight: number;
+}
+
+type TextProps = TextFontInheritProps | TextNotFontInheritProps;
 
 export const Text = ({ children }: TextProps) => {
   return <span>{children}</span>;
@@ -24,11 +36,8 @@ Text.print = (element: ReactElement<TextProps>, context: ZplElementContext) => {
     children,
     fieldOriginX = 0,
     fieldOriginY = 0,
-    fontName = "0",
-    fontWidth = 30,
-    fontHeight = 30,
     fieldOrientation,
-    fontInherit = true,
+    fontInherit,
   } = element.props;
 
   if (typeof children !== "string") {
@@ -42,9 +51,18 @@ Text.print = (element: ReactElement<TextProps>, context: ZplElementContext) => {
     labelOrientation,
   } = context;
 
-  const _fontName = fontInherit ? defaultFontName : fontName;
-  const _fontWidth = fontInherit ? defaultFontWidth : fontWidth;
-  const _fontHeight = fontInherit ? defaultFontHeight : fontHeight;
+  const { fontName, width, height } =
+    fontInherit === false
+      ? {
+          fontName: element.props.fontName,
+          width: element.props.fontWidth,
+          height: element.props.fontHeight,
+        }
+      : {
+          fontName: defaultFontName,
+          width: defaultFontWidth,
+          height: defaultFontHeight,
+        };
   const _fieldOrientation = fieldOrientation ?? labelOrientation;
 
   const output: string[] = [];
@@ -54,10 +72,10 @@ Text.print = (element: ReactElement<TextProps>, context: ZplElementContext) => {
   // Set field font
   output.push(
     fieldFont({
-      fontName: _fontName,
+      fontName,
       fieldOrientation: _fieldOrientation,
-      width: _fontWidth,
-      height: _fontHeight,
+      width,
+      height,
     }),
   );
   // Set print text
