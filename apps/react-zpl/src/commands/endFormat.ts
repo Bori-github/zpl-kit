@@ -1,3 +1,3 @@
-import { defineCommand } from "./base";
+import { defineCommand } from './base';
 
-export const endFormat = defineCommand(() => "^XZ");
+export const endFormat = defineCommand(() => '^XZ');
