@@ -37,7 +37,7 @@ export const ZplLabel: ZplLabelComponent = ({ children }) => {
 
 ZplLabel.displayName = "ZplLabel";
 
-ZplLabel.print = (element: ReactElement<ZplLabelProps>) => {
+ZplLabel.print = (element) => {
   const {
     width,
     height,
