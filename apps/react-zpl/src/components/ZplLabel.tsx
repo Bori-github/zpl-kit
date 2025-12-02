@@ -15,19 +15,23 @@ import { printChildren } from "../utils";
 import { ObjectValues, ZplElement, ZplElementContext } from "../types";
 import { ORIENTATION, UTF8_ENCODING } from "../constants";
 
-export interface ZplLabelProps extends PropsWithChildren {
+interface ZplLabelProps extends PropsWithChildren {
   width: number; // dots
   height: number; // dots
   offsetX?: number; // dots
   offsetY?: number; // dots
   labelOrientation?: ObjectValues<typeof ORIENTATION>;
+  encoding?: string[];
   defaultFontName?: string;
   defaultFontWidth?: number;
   defaultFontHeight?: number;
-  encoding?: string[];
 }
 
-export const ZplLabel: ZplElement<ZplLabelProps> = ({ children }) => {
+interface ZplLabelComponent extends ZplElement<ZplLabelProps> {
+  print: (element: ReactElement<ZplLabelProps>) => string;
+}
+
+export const ZplLabel: ZplLabelComponent = ({ children }) => {
   return <div>{children}</div>;
 };
 
@@ -40,13 +44,17 @@ ZplLabel.print = (element: ReactElement<ZplLabelProps>) => {
     offsetX = 0,
     offsetY = 0,
     labelOrientation = ORIENTATION.NO_ROTATION,
-    defaultFontName = "J",
+    encoding = [UTF8_ENCODING],
+    defaultFontName = "J", // default korean
     defaultFontWidth = 30,
     defaultFontHeight = 30,
-    encoding = [UTF8_ENCODING],
   } = element.props;
-  // TODO: improve context
-  const context: ZplElementContext = {};
+
+  const context: ZplElementContext = {
+    defaultFontName,
+    defaultFontWidth,
+    defaultFontHeight,
+  };
 
   const output = [];
 
