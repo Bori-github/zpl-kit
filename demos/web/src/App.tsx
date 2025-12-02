@@ -1,13 +1,16 @@
 import { useState } from "react";
 
-import { ZplLabel } from "@zpl-kit/react-zpl";
+import { Text, ZplLabel } from "@zpl-kit/react-zpl";
 
 import "./App.css";
 
 const TestLabel = ({ text }: { text: string }) => {
   return (
     <ZplLabel width={100} height={100} labelOrientation="R">
-      {text}
+      <Text>{text}</Text>
+      <Text fieldOriginX={50} fontWidth={20} fontHeight={20}>
+        텍스트 확인
+      </Text>
     </ZplLabel>
   );
 };
@@ -16,7 +19,7 @@ function App() {
   const [zplOutput, setZplOutput] = useState<string>("");
 
   const handlePrint = () => {
-    setZplOutput(ZplLabel.print(TestLabel({ text: "Test" })));
+    setZplOutput(ZplLabel.print(TestLabel({ text: "Test" }), {}));
   };
 
   return (
