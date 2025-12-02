@@ -44,10 +44,7 @@ export interface ZplElement<Props = unknown> {
    * @param context - ZPL 명령어 생성에 필요한 컨텍스트 정보
    * @returns ZPL 명령어 문자열
    */
-  print: (
-    element: ReactElement<Props>,
-    context: ZplElementContext | undefined,
-  ) => string;
+  print: (element: ReactElement<Props>, context: ZplElementContext) => string;
 }
 
 /**

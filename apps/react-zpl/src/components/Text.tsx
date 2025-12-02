@@ -1,5 +1,6 @@
-import { PropsWithChildren, ReactElement } from "react";
-import { ObjectValues, ZplElementContext } from "../types";
+import { PropsWithChildren } from "react";
+
+import { ObjectValues, ZplElement } from "../types";
 import { ORIENTATION } from "../constants";
 import { fieldData, fieldFont, fieldOrigin, newLine } from "../commands";
 
@@ -25,13 +26,13 @@ interface TextNotFontInheritProps extends BaseTextProps {
 
 type TextProps = TextFontInheritProps | TextNotFontInheritProps;
 
-export const Text = ({ children }: TextProps) => {
+export const Text: ZplElement<TextProps> = ({ children }) => {
   return <span>{children}</span>;
 };
 
 Text.displayName = "Text";
 
-Text.print = (element: ReactElement<TextProps>, context: ZplElementContext) => {
+Text.print = (element, context) => {
   const {
     children,
     fieldOriginX = 0,
