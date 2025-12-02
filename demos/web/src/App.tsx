@@ -14,7 +14,7 @@ const TestLabel = ({ text }: { text: string }) => {
       defaultFontWidth={30}
       defaultFontHeight={30}
     >
-      <Text>{text}</Text>
+      <Text fieldOrientation="N">{text}</Text>
       <Text fieldOriginX={50} fontWidth={20} fontHeight={20}>
         텍스트 확인
       </Text>

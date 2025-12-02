@@ -27,7 +27,7 @@ Text.print = (element: ReactElement<TextProps>, context: ZplElementContext) => {
     fontName = "0",
     fontWidth = 30,
     fontHeight = 30,
-    fieldOrientation = ORIENTATION.NO_ROTATION,
+    fieldOrientation,
     fontInherit = true,
   } = element.props;
 
@@ -35,11 +35,17 @@ Text.print = (element: ReactElement<TextProps>, context: ZplElementContext) => {
     throw new Error("Text 컴포넌트는 children에 문자열만 허용합니다.");
   }
 
-  const { defaultFontName, defaultFontWidth, defaultFontHeight } = context;
+  const {
+    defaultFontName,
+    defaultFontWidth,
+    defaultFontHeight,
+    labelOrientation,
+  } = context;
 
   const _fontName = fontInherit ? defaultFontName : fontName;
   const _fontWidth = fontInherit ? defaultFontWidth : fontWidth;
   const _fontHeight = fontInherit ? defaultFontHeight : fontHeight;
+  const _fieldOrientation = fieldOrientation ?? labelOrientation;
 
   const output: string[] = [];
 
@@ -49,7 +55,7 @@ Text.print = (element: ReactElement<TextProps>, context: ZplElementContext) => {
   output.push(
     fieldFont({
       fontName: _fontName,
-      fieldOrientation,
+      fieldOrientation: _fieldOrientation,
       width: _fontWidth,
       height: _fontHeight,
     }),
