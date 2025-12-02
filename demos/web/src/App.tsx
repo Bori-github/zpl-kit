@@ -1,13 +1,29 @@
 import { useState } from "react";
 
-import { ZplLabel } from "@zpl-kit/react-zpl";
+import { Text, ZplLabel } from "@zpl-kit/react-zpl";
 
 import "./App.css";
 
 const TestLabel = ({ text }: { text: string }) => {
   return (
-    <ZplLabel width={100} height={100} labelOrientation="R">
-      {text}
+    <ZplLabel
+      width={100}
+      height={100}
+      labelOrientation="R"
+      defaultFontName="J"
+      defaultFontWidth={30}
+      defaultFontHeight={30}
+    >
+      <Text
+        fieldOrientation="N"
+        fontInherit={false}
+        fontName="0"
+        fontWidth={20}
+        fontHeight={20}
+      >
+        {text}
+      </Text>
+      <Text fieldOriginX={50}>텍스트 확인</Text>
     </ZplLabel>
   );
 };
