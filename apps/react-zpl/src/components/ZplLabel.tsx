@@ -1,6 +1,8 @@
 import { PropsWithChildren, ReactElement } from "react";
 
 import {
+  changeDefaultFont,
+  changeInternationalEncoding,
   endFormat,
   fieldOrientation,
   labelHome,
@@ -11,7 +13,7 @@ import {
 } from "../commands";
 import { printChildren } from "../utils";
 import { ObjectValues, ZplElement, ZplElementContext } from "../types";
-import { ORIENTATION } from "../constants";
+import { ORIENTATION, UTF8_ENCODING } from "../constants";
 
 export interface ZplLabelProps extends PropsWithChildren {
   width: number; // dots
@@ -19,6 +21,10 @@ export interface ZplLabelProps extends PropsWithChildren {
   offsetX?: number; // dots
   offsetY?: number; // dots
   labelOrientation?: ObjectValues<typeof ORIENTATION>;
+  defaultFontName?: string;
+  defaultFontWidth?: number;
+  defaultFontHeight?: number;
+  encoding?: string[];
 }
 
 export const ZplLabel: ZplElement<ZplLabelProps> = ({ children }) => {
@@ -34,6 +40,10 @@ ZplLabel.print = (element: ReactElement<ZplLabelProps>) => {
     offsetX = 0,
     offsetY = 0,
     labelOrientation = ORIENTATION.NO_ROTATION,
+    defaultFontName = "J",
+    defaultFontWidth = 30,
+    defaultFontHeight = 30,
+    encoding = [UTF8_ENCODING],
   } = element.props;
   // TODO: improve context
   const context: ZplElementContext = {};
@@ -51,14 +61,21 @@ ZplLabel.print = (element: ReactElement<ZplLabelProps>) => {
 
   // TODO: add zpl commands
 
+  // Set encoding
+  output.push(changeInternationalEncoding(encoding));
+  // Set default fonts
+  output.push(
+    changeDefaultFont({
+      fontName: defaultFontName,
+      width: defaultFontWidth,
+      height: defaultFontHeight,
+    }),
+  );
+
   // Add print children
   output.push(printChildren(element, context));
   // End format
   output.push(endFormat());
-
-  // TODO: 추후 제거(for debugging)
-  console.log("output", output);
-  console.log("element", element.props);
 
   return output.flat(Infinity).join(newLine());
 };
