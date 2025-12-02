@@ -51,6 +51,7 @@ ZplLabel.print = (element: ReactElement<ZplLabelProps>) => {
   } = element.props;
 
   const context: ZplElementContext = {
+    labelOrientation,
     defaultFontName,
     defaultFontWidth,
     defaultFontHeight,

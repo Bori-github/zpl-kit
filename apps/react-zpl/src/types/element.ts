@@ -1,4 +1,6 @@
 import { ReactElement } from "react";
+import { ObjectValues } from "./common";
+import { ORIENTATION } from "../constants";
 
 /**
  * ZPL 명령어 생성에 필요한 컨텍스트 정보
@@ -12,6 +14,7 @@ import { ReactElement } from "react";
  * @see {@link ZplElement} - 이 컨텍스트를 사용하는 인터페이스
  */
 export interface ZplElementContext {
+  labelOrientation: ObjectValues<typeof ORIENTATION>;
   defaultFontName: string;
   defaultFontWidth: number;
   defaultFontHeight: number;
