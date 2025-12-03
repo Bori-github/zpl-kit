@@ -54,6 +54,9 @@ importers:
       '@electron-toolkit/utils':
         specifier: ^4.0.0
         version: 4.0.0(electron@39.2.4)
+      '@zpl-kit/react-zpl':
+        specifier: workspace:*
+        version: link:../../apps/react-zpl
       electron-updater:
         specifier: ^6.3.9
         version: 6.6.2
