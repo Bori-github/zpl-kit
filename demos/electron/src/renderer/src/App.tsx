@@ -1,34 +1,39 @@
-import Versions from './components/Versions'
-import electronLogo from './assets/electron.svg'
+import { useState } from 'react'
+
+import { Text, ZplLabel } from '@zpl-kit/react-zpl'
+
+const TestLabel = ({ text }: { text: string }): React.JSX.Element => {
+  return (
+    <ZplLabel
+      width={100}
+      height={100}
+      labelOrientation="R"
+      defaultFontName="J"
+      defaultFontWidth={30}
+      defaultFontHeight={30}
+    >
+      <Text fieldOrientation="N" fontInherit={false} fontName="0" fontWidth={20} fontHeight={20}>
+        {text}
+      </Text>
+      <Text fieldOriginX={50}>텍스트 확인</Text>
+    </ZplLabel>
+  )
+}
 
 function App(): React.JSX.Element {
-  const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
+  const [zplOutput, setZplOutput] = useState<string>('')
+
+  const handlePrint = (): void => {
+    setZplOutput(ZplLabel.print(TestLabel({ text: 'Test' })))
+  }
 
   return (
-    <>
-      <img alt="logo" className="logo" src={electronLogo} />
-      <div className="creator">Powered by electron-vite</div>
-      <div className="text">
-        Build an Electron app with <span className="react">React</span>
-        &nbsp;and <span className="ts">TypeScript</span>
-      </div>
-      <p className="tip">
-        Please try pressing <code>F12</code> to open the devTool
-      </p>
-      <div className="actions">
-        <div className="action">
-          <a href="https://electron-vite.org/" target="_blank" rel="noreferrer">
-            Documentation
-          </a>
-        </div>
-        <div className="action">
-          <a target="_blank" rel="noreferrer" onClick={ipcHandle}>
-            Send IPC
-          </a>
-        </div>
-      </div>
-      <Versions></Versions>
-    </>
+    <div>
+      <button type="button" onClick={handlePrint}>
+        Generate ZPL
+      </button>
+      {zplOutput && <pre>{zplOutput}</pre>}
+    </div>
   )
 }
 
