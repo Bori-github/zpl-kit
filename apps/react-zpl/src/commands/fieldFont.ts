@@ -1,7 +1,7 @@
-import { defineCommand } from "./base";
+import { defineCommand } from './base';
 
-import { ORIENTATION } from "../constants";
-import { ObjectValues } from "../types";
+import { ORIENTATION } from '../constants';
+import { ObjectValues } from '../types';
 
 interface FieldFontParams {
   fontName?: string; // A-Z, 0-9, downloaded font
@@ -11,6 +11,6 @@ interface FieldFontParams {
 }
 
 export const fieldFont = defineCommand<FieldFontParams>(
-  ({ fontName = "0", fieldOrientation = "N", height, width }) =>
-    `^A${fontName}${fieldOrientation},${height},${width}`,
+  ({ fontName = '0', fieldOrientation = 'N', height, width }) =>
+    `^A${fontName}${fieldOrientation},${height},${width}`
 );

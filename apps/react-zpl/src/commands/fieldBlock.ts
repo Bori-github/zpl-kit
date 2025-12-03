@@ -1,7 +1,7 @@
-import { defineCommand } from "./base";
+import { defineCommand } from './base';
 
-import { ALIGN } from "../constants";
-import { ObjectValues } from "../types";
+import { ALIGN } from '../constants';
+import { ObjectValues } from '../types';
 
 interface FieldBlockParams {
   blockWidth?: number;
@@ -12,6 +12,6 @@ interface FieldBlockParams {
 }
 
 export const fieldBlock = defineCommand<FieldBlockParams>(
-  ({ blockWidth = 0, maxLine = 1, lineSpacing = 0, align = "L", indent = 0 }) =>
-    `^FB${blockWidth},${maxLine},${lineSpacing},${align},${indent}`,
+  ({ blockWidth = 0, maxLine = 1, lineSpacing = 0, align = 'L', indent = 0 }) =>
+    `^FB${blockWidth},${maxLine},${lineSpacing},${align},${indent}`
 );

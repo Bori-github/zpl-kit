@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { Text, ZplLabel } from "@zpl-kit/react-zpl";
+import { Text, ZplLabel } from '@zpl-kit/react-zpl';
 
-import "./App.css";
+import './App.css';
 
 const TestLabel = ({ text }: { text: string }) => {
   return (
@@ -29,10 +29,10 @@ const TestLabel = ({ text }: { text: string }) => {
 };
 
 function App() {
-  const [zplOutput, setZplOutput] = useState<string>("");
+  const [zplOutput, setZplOutput] = useState<string>('');
 
   const handlePrint = () => {
-    setZplOutput(ZplLabel.print(TestLabel({ text: "Test" })));
+    setZplOutput(ZplLabel.print(TestLabel({ text: 'Test' })));
   };
 
   return (

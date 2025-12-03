@@ -1,8 +1,8 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren } from 'react';
 
-import { ObjectValues, ZplElement } from "../types";
-import { ORIENTATION } from "../constants";
-import { fieldData, fieldFont, fieldOrigin, newLine } from "../commands";
+import { ObjectValues, ZplElement } from '../types';
+import { ORIENTATION } from '../constants';
+import { fieldData, fieldFont, fieldOrigin, newLine } from '../commands';
 
 interface BaseTextProps extends PropsWithChildren {
   fieldOriginX?: number;
@@ -30,7 +30,7 @@ export const Text: ZplElement<TextProps> = ({ children }) => {
   return <span>{children}</span>;
 };
 
-Text.displayName = "Text";
+Text.displayName = 'Text';
 
 Text.print = (element, context) => {
   const {
@@ -41,8 +41,8 @@ Text.print = (element, context) => {
     fontInherit,
   } = element.props;
 
-  if (typeof children !== "string") {
-    throw new Error("Text 컴포넌트는 children에 문자열만 허용합니다.");
+  if (typeof children !== 'string') {
+    throw new Error('Text 컴포넌트는 children에 문자열만 허용합니다.');
   }
 
   const {
@@ -77,7 +77,7 @@ Text.print = (element, context) => {
       fieldOrientation: _fieldOrientation,
       width,
       height,
-    }),
+    })
   );
   // Set print text
   output.push(fieldData(children));

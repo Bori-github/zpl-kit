@@ -1,2 +1,2 @@
-export * from "./ZplLabel";
-export * from "./Text";
+export * from './ZplLabel';
+export * from './Text';

@@ -1,6 +1,6 @@
-import { ReactElement } from "react";
-import { ObjectValues } from "./common";
-import { ORIENTATION } from "../constants";
+import { ReactElement } from 'react';
+import { ObjectValues } from './common';
+import { ORIENTATION } from '../constants';
 
 /**
  * ZPL 명령어 생성에 필요한 컨텍스트 정보
@@ -57,7 +57,7 @@ export interface ZplElement<Props = unknown> {
  */
 export function isZplElement(element: unknown): element is ZplElement {
   return (
-    typeof element === "function" &&
-    typeof (element as ZplElement).print === "function"
+    typeof element === 'function' &&
+    typeof (element as ZplElement).print === 'function'
   );
 }

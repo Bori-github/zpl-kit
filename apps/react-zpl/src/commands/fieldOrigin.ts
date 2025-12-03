@@ -1,4 +1,4 @@
-import { defineCommand } from "./base";
+import { defineCommand } from './base';
 
 interface FieldOriginParams {
   offsetX: number;
@@ -6,5 +6,5 @@ interface FieldOriginParams {
 }
 
 export const fieldOrigin = defineCommand<FieldOriginParams>(
-  ({ offsetX, offsetY }) => `^FO${offsetX},${offsetY}`,
+  ({ offsetX, offsetY }) => `^FO${offsetX},${offsetY}`
 );

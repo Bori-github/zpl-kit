@@ -1,4 +1,4 @@
-import { defineCommand } from "./base";
+import { defineCommand } from './base';
 
 interface LabelHomeParams {
   offsetX: number;
@@ -6,5 +6,5 @@ interface LabelHomeParams {
 }
 
 export const labelHome = defineCommand<LabelHomeParams>(
-  ({ offsetX, offsetY }) => `^LH${offsetX},${offsetY}`,
+  ({ offsetX, offsetY }) => `^LH${offsetX},${offsetY}`
 );

@@ -1,4 +1,4 @@
 export const COLOR = {
-  BLACK: "B",
-  WHITE: "W",
+  BLACK: 'B',
+  WHITE: 'W',
 } as const;

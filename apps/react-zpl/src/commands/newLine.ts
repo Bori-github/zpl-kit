@@ -1,3 +1,3 @@
-import { defineCommand } from "./base";
+import { defineCommand } from './base';
 
-export const newLine = defineCommand(() => "\\&");
+export const newLine = defineCommand(() => '\\&');

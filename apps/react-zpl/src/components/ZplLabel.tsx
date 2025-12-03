@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactElement } from "react";
+import { PropsWithChildren, ReactElement } from 'react';
 
 import {
   changeDefaultFont,
@@ -10,10 +10,10 @@ import {
   newLine,
   printWidth,
   startFormat,
-} from "../commands";
-import { printChildren } from "../utils";
-import { ObjectValues, ZplElement, ZplElementContext } from "../types";
-import { ORIENTATION, UTF8_ENCODING } from "../constants";
+} from '../commands';
+import { printChildren } from '../utils';
+import { ObjectValues, ZplElement, ZplElementContext } from '../types';
+import { ORIENTATION, UTF8_ENCODING } from '../constants';
 
 interface ZplLabelProps extends PropsWithChildren {
   width: number; // dots
@@ -35,7 +35,7 @@ export const ZplLabel: ZplLabelComponent = ({ children }) => {
   return <div>{children}</div>;
 };
 
-ZplLabel.displayName = "ZplLabel";
+ZplLabel.displayName = 'ZplLabel';
 
 ZplLabel.print = (element) => {
   const {
@@ -45,7 +45,7 @@ ZplLabel.print = (element) => {
     offsetY = 0,
     labelOrientation = ORIENTATION.NO_ROTATION,
     encoding = [UTF8_ENCODING],
-    defaultFontName = "J", // default korean
+    defaultFontName = 'J', // default korean
     defaultFontWidth = 30,
     defaultFontHeight = 30,
   } = element.props;
@@ -78,7 +78,7 @@ ZplLabel.print = (element) => {
       fontName: defaultFontName,
       width: defaultFontWidth,
       height: defaultFontHeight,
-    }),
+    })
   );
 
   // Add print children

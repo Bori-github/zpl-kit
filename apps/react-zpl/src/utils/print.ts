@@ -1,7 +1,7 @@
-import { isValidElement, ReactNode } from "react";
+import { isValidElement, ReactNode } from 'react';
 
-import { renderReactElement } from "./render";
-import { isZplElement, ZplElementContext } from "../types";
+import { renderReactElement } from './render';
+import { isZplElement, ZplElementContext } from '../types';
 
 /**
  * 단일 React 노드를 재귀적으로 순회하면서 자식 노드를 ZPL 렌더링 파이프라인에 맞게 처리하는 헬퍼
@@ -12,7 +12,7 @@ import { isZplElement, ZplElementContext } from "../types";
  */
 export const printChild = (
   node: ReactNode,
-  context: ZplElementContext,
+  context: ZplElementContext
 ): ReactNode[] | undefined => {
   if (!isValidElement(node)) return;
 
@@ -46,7 +46,7 @@ export const printChild = (
  */
 export const printChildren = (
   node: ReactNode,
-  context: ZplElementContext,
+  context: ZplElementContext
 ): ReactNode[] | undefined => {
   if (!isValidElement(node)) return;
 
