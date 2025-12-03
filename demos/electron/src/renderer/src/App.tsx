@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { Text, ZplLabel } from '@zpl-kit/react-zpl'
 
-const TestLabel = ({ text }: { text: string }): React.JSX.Element => {
+const TestLabel = ({ text }: { text: string }) => {
   return (
     <ZplLabel
       width={100}
@@ -23,7 +23,7 @@ const TestLabel = ({ text }: { text: string }): React.JSX.Element => {
 function App(): React.JSX.Element {
   const [zplOutput, setZplOutput] = useState<string>('')
 
-  const handlePrint = (): void => {
+  const handlePrint = () => {
     setZplOutput(ZplLabel.print(TestLabel({ text: 'Test' })))
   }
 
