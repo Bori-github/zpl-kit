@@ -18,12 +18,22 @@ export default defineConfig({
   renderer: {
     resolve: {
       alias: {
-        '@renderer': resolve('src/renderer/src')
+        '@renderer': resolve('src/renderer/src'),
+        '@zpl-kit/react-zpl': resolve('../../apps/react-zpl/src')
       }
     },
     plugins: [react()],
     build: {
-      target: 'esnext'
+      target: 'esnext',
+      commonjsOptions: {
+        transformMixedEsModules: true
+      }
+    },
+    optimizeDeps: {
+      include: ['react', 'react-dom'],
+      esbuildOptions: {
+        target: 'esnext'
+      }
     }
   }
 })
