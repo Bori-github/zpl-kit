@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { Line, Text, ZplLabel } from '@zpl-kit/react-zpl'
+import { DiagonalLine, Line, Text, ZplLabel } from '@zpl-kit/react-zpl'
 
 const TestLabel = ({ text }: { text: string }) => {
   return (
@@ -25,6 +25,22 @@ const TestLabel = ({ text }: { text: string }) => {
         lineColor="B"
       />
       <Line length={100} direction="vertical" fieldOriginX={10} fieldOriginY={20} lineColor="B" />
+      <DiagonalLine
+        width={100}
+        height={100}
+        orientation="R"
+        fieldOriginX={10}
+        fieldOriginY={20}
+        thickness={1}
+      />
+      <DiagonalLine
+        width={100}
+        height={100}
+        orientation="L"
+        fieldOriginX={10}
+        fieldOriginY={20}
+        thickness={2}
+      />
     </ZplLabel>
   )
 }
