@@ -8,13 +8,14 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "development": "./src/index.ts",
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     }
   },
   "scripts": {
     "dev": "rolldown --watch -c rolldown.config.ts",
-    "build": "rolldown -c rolldown.config.ts",
+    "build": "rolldown -c rolldown.config.ts && tsc --emitDeclarationOnly --noEmit false",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {

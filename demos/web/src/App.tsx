@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Text, ZplLabel } from '@zpl-kit/react-zpl';
+import { DiagonalLine, Line, Text, ZplLabel } from '@zpl-kit/react-zpl';
 
 import './App.css';
 
@@ -24,6 +24,37 @@ const TestLabel = ({ text }: { text: string }) => {
         {text}
       </Text>
       <Text fieldOriginX={50}>텍스트 확인</Text>
+      <Line
+        length={100}
+        direction="horizontal"
+        fieldOriginX={10}
+        fieldOriginY={20}
+        thickness={1}
+        lineColor="B"
+      />
+      <Line
+        length={100}
+        direction="vertical"
+        fieldOriginX={10}
+        fieldOriginY={20}
+        lineColor="B"
+      />
+      <DiagonalLine
+        width={100}
+        height={100}
+        orientation="R"
+        fieldOriginX={10}
+        fieldOriginY={20}
+        thickness={1}
+      />
+      <DiagonalLine
+        width={100}
+        height={100}
+        orientation="L"
+        fieldOriginX={10}
+        fieldOriginY={20}
+        thickness={2}
+      />
     </ZplLabel>
   );
 };
