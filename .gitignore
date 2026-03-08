@@ -21,3 +21,6 @@ coverage
 # 환경 변수 파일
 .env.local
 .env*.local
+
+# 참조 레포지토리 (변경점 추적 안 함)
+references/
