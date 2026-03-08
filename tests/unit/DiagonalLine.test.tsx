@@ -18,7 +18,7 @@ describe('DiagonalLine', () => {
         height: 30,
       });
       expect(DiagonalLine.print(el, defaultContext)).toBe(
-        '^FO0,0\n^GD30,30,1,B,R^FS'
+        '^FO0,0\\&^GD30,30,1,B,R^FS'
       );
     });
 
@@ -32,7 +32,7 @@ describe('DiagonalLine', () => {
         thickness: 2,
       });
       expect(DiagonalLine.print(el, defaultContext)).toBe(
-        '^FO10,20\n^GD50,40,2,B,L^FS'
+        '^FO10,20\\&^GD50,40,2,B,L^FS'
       );
     });
 
