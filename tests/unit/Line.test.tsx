@@ -17,7 +17,7 @@ describe('Line', () => {
         length: 100,
         direction: 'horizontal',
       });
-      expect(Line.print(el, defaultContext)).toBe('^FO0,0\n^GB100,0,1,B,0^FS');
+      expect(Line.print(el, defaultContext)).toBe('^FO0,0\n^GB100,1,1,B,0^FS');
     });
 
     it('fieldOrigin, thickness, lineColor 지정 시 올바른 ZPL 생성', () => {
@@ -30,7 +30,7 @@ describe('Line', () => {
         lineColor: 'B',
       });
       expect(Line.print(el, defaultContext)).toBe(
-        '^FO10,20\n^GB100,0,2,B,0^FS'
+        '^FO10,20\n^GB100,2,2,B,0^FS'
       );
     });
 
@@ -40,7 +40,7 @@ describe('Line', () => {
         direction: 'horizontal',
         lineColor: 'W',
       });
-      expect(Line.print(el, defaultContext)).toContain('^GB50,0,1,W,0^FS');
+      expect(Line.print(el, defaultContext)).toContain('^GB50,1,1,W,0^FS');
     });
   });
 
@@ -50,7 +50,7 @@ describe('Line', () => {
         length: 50,
         direction: 'vertical',
       });
-      expect(Line.print(el, defaultContext)).toBe('^FO0,0\n^GB0,50,1,B,0^FS');
+      expect(Line.print(el, defaultContext)).toBe('^FO0,0\n^GB1,50,1,B,0^FS');
     });
 
     it('fieldOrigin, thickness 지정 시 올바른 ZPL 생성', () => {
@@ -61,7 +61,7 @@ describe('Line', () => {
         fieldOriginY: 40,
         thickness: 3,
       });
-      expect(Line.print(el, defaultContext)).toBe('^FO30,40\n^GB0,80,3,B,0^FS');
+      expect(Line.print(el, defaultContext)).toBe('^FO30,40\n^GB3,80,3,B,0^FS');
     });
   });
 
