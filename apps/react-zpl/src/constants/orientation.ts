@@ -4,3 +4,8 @@ export const ORIENTATION = {
   INVERTED: 'I', // inverted 180 degrees
   BOTTOM_UP: 'B', // read from bottom up, 270 degrees
 } as const;
+
+export const DIAGONAL_ORIENTATION = {
+  RIGHT_DOWN: 'R',
+  LEFT_UP: 'L',
+} as const;

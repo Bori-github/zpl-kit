@@ -12,3 +12,4 @@ export * from './fieldFont';
 export * from './changeDefaultFont';
 export * from './changeInternationalEncoding';
 export * from './graphicBox';
+export * from './graphicDiagonal';
