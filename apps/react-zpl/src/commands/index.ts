@@ -14,3 +14,4 @@ export * from './changeInternationalEncoding';
 export * from './graphicBox';
 export * from './graphicDiagonal';
 export * from './graphicCircle';
+export * from './graphicEllipse';
