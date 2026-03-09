@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { Circle, DiagonalLine, Line, Text, ZplLabel } from '@zpl-kit/react-zpl'
+import { Circle, DiagonalLine, Ellipse, Line, Text, ZplLabel } from '@zpl-kit/react-zpl'
 
 const TestLabel = ({ text }: { text: string }) => {
   return (
@@ -42,6 +42,7 @@ const TestLabel = ({ text }: { text: string }) => {
         thickness={2}
       />
       <Circle diameter={100} fieldOriginX={10} fieldOriginY={20} thickness={1} />
+      <Ellipse width={100} height={50} fieldOriginX={10} fieldOriginY={20} thickness={2} />
     </ZplLabel>
   )
 }
