@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { DiagonalLine, Line, Text, ZplLabel } from '@zpl-kit/react-zpl';
+import { Circle, DiagonalLine, Line, Text, ZplLabel } from '@zpl-kit/react-zpl';
 
 import './App.css';
 
@@ -54,6 +54,12 @@ const TestLabel = ({ text }: { text: string }) => {
         fieldOriginX={10}
         fieldOriginY={20}
         thickness={2}
+      />
+      <Circle
+        diameter={100}
+        fieldOriginX={10}
+        fieldOriginY={20}
+        thickness={1}
       />
     </ZplLabel>
   );
