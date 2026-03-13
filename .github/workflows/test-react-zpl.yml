@@ -5,7 +5,7 @@ on:
     paths:
       - 'apps/react-zpl/**'
       - 'tests/**'
-      - '.github/workflows/test.yml'
+      - '.github/workflows/test-react-zpl.yml'
 
 jobs:
   test:
