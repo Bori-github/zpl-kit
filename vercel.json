@@ -1,0 +1,6 @@
+{
+  "buildCommand": "pnpm --filter @zpl-kit/zpl-viewer build",
+  "outputDirectory": "apps/zpl-viewer/dist",
+  "installCommand": "pnpm install",
+  "framework": null
+}
