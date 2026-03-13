@@ -1,0 +1,23 @@
+[
+  {
+    "id": "shipping-label",
+    "label": "배송 라벨",
+    "widthMm": 75,
+    "heightMm": 50,
+    "zpl": "^XA\n^PW600\n^LL400\n^FWN\n^LH0,0\n^CI28\n^CFJ,28,28\n^FO10,10\n^GB580,3,3,B,0^FS\n^FO15,20\n^GC20,20,B^FS\n^FO45,20\n^A0N,35,35\n^FD홍길동\n^FS\n^FO45,62\n^AJN,28,28\n^FD서울특별시 강남구 테헤란로 123\n^FS\n^FO45,95\n^AJN,28,28\n^FD서울 06234\n^FS\n^FO440,15\n^GB1,115,1,B,0^FS\n^FO450,30\n^GE130,50,3,B^FS\n^FO463,46\n^A0N,22,22\n^FDFRAGILE\n^FS\n^FO10,140\n^GB580,1,1,B,0^FS\n^FO10,155\n^A0N,20,20\n^FDTRACKING NO.\n^FS\n^FO10,180\n^A0N,38,38\n^FD1234-5678-9012\n^FS\n^FO10,240\n^GB580,3,3,B,0^FS\n^XZ"
+  },
+  {
+    "id": "price-tag",
+    "label": "가격표",
+    "widthMm": 50,
+    "heightMm": 37.5,
+    "zpl": "^XA\n^PW400\n^LL300\n^FWN\n^LH0,0\n^CI28\n^CFJ,28,28\n^FO10,10\n^GB380,2,2,B,0^FS\n^FO10,288\n^GB380,2,2,B,0^FS\n^FO10,10\n^GB2,280,2,B,0^FS\n^FO388,10\n^GB2,280,2,B,0^FS\n^FO10,10\n^GD20,20,1,B,R^FS\n^FO368,10\n^GD20,20,1,B,L^FS\n^FO25,25\n^A0N,32,32\n^FD무선 이어폰\n^FS\n^FO25,68\n^GB350,1,1,B,0^FS\n^FO25,80\n^A0N,22,22\n^FD59,000\n^FS\n^FO25,97\n^GB80,1,1,B,0^FS\n^FO80,115\n^GE200,60,3,B^FS\n^FO95,130\n^A0N,42,42\n^FD39,900\n^FS\n^FO25,200\n^GB350,1,1,B,0^FS\n^FO25,210\n^A0N,20,20\n^FDSKU: EP-WL-2024-BLK\n^FS\n^FO305,195\n^GC70,70,B^FS\n^FO308,215\n^A0N,20,20\n^FD-32%\n^FS\n^XZ"
+  },
+  {
+    "id": "graphics-showcase",
+    "label": "그래픽 쇼케이스",
+    "widthMm": 75,
+    "heightMm": 62.5,
+    "zpl": "^XA\n^PW600\n^LL500\n^FWN\n^LH0,0\n^CI28\n^CFJ,22,22\n^FO10,8\n^A0N,28,28\n^FDGraphics Showcase\n^FS\n^FO10,42\n^GB580,2,2,B,0^FS\n^FO200,50\n^GB1,440,1,B,0^FS\n^FO400,50\n^GB1,440,1,B,0^FS\n^FO10,160\n^GB580,1,1,B,0^FS\n^FO10,270\n^GB580,1,1,B,0^FS\n^FO10,380\n^GB580,1,1,B,0^FS\n^FO20,55\n^A0N,20,20\n^FDLine (H)\n^FS\n^FO30,110\n^GB140,3,3,B,0^FS\n^FO215,55\n^A0N,20,20\n^FDLine (V)\n^FS\n^FO290,75\n^GB3,80,3,B,0^FS\n^FO415,55\n^A0N,20,20\n^FDLine (thick)\n^FS\n^FO420,110\n^GB140,8,8,B,0^FS\n^FO20,170\n^A0N,20,20\n^FDDiagonal (R)\n^FS\n^FO55,195\n^GD80,60,2,B,R^FS\n^FO215,170\n^A0N,20,20\n^FDDiagonal (L)\n^FS\n^FO255,195\n^GD80,60,2,B,L^FS\n^FO415,170\n^A0N,20,20\n^FDDiagonal (X)\n^FS\n^FO455,195\n^GD80,60,2,B,R^FS\n^FO455,195\n^GD80,60,2,B,L^FS\n^FO20,280\n^A0N,20,20\n^FDCircle\n^FS\n^FO65,300\n^GC60,2,B^FS\n^FO215,280\n^A0N,20,20\n^FDCircle (filled)\n^FS\n^FO265,300\n^GC60,60,B^FS\n^FO415,280\n^A0N,20,20\n^FDCircle (white)\n^FS\n^FO465,300\n^GC60,2,W^FS\n^FO20,390\n^A0N,20,20\n^FDEllipse\n^FS\n^FO25,415\n^GE140,60,2,B^FS\n^FO215,390\n^A0N,20,20\n^FDEllipse (filled)\n^FS\n^FO220,415\n^GE140,60,60,B^FS\n^FO415,390\n^A0N,20,20\n^FDEllipse (white)\n^FS\n^FO420,415\n^GE140,60,2,W^FS\n^XZ"
+  }
+]
