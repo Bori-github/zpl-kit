@@ -1,5 +1,6 @@
 import axios, { isAxiosError, isCancel } from 'axios';
 
+import { mmToInch } from '@/lib/units';
 import type {
   FetchLabelaryPngParams,
   LabelaryAccept,
@@ -68,8 +69,8 @@ export async function fetchLabelaryPng(
     throw err;
   }
 
-  const widthInch = dims.widthMm / 25.4;
-  const heightInch = dims.heightMm / 25.4;
+  const widthInch = mmToInch(dims.widthMm);
+  const heightInch = mmToInch(dims.heightMm);
   const path = `/${dpmm}dpmm/labels/${widthInch}x${heightInch}/0/`;
 
   try {
