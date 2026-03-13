@@ -1,5 +1,7 @@
 export type LabelaryDpmm = 6 | 8 | 12 | 24;
 
+export type LabelaryAccept = 'image/png' | 'application/pdf';
+
 export interface FetchLabelaryPngParams {
   zpl: string;
   widthMm: number;

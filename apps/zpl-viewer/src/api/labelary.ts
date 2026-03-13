@@ -1,4 +1,9 @@
-import type { FetchLabelaryPngParams, LabelaryDpmm, ZplPreviewError } from '@/types/zpl-preview';
+import type {
+  FetchLabelaryPngParams,
+  LabelaryAccept,
+  LabelaryDpmm,
+  ZplPreviewError,
+} from '@/types/zpl-preview';
 
 const LABEL_MAX_MM = 381;
 const LABELARY_BASE = 'https://api.labelary.com/v1/printers';
@@ -10,8 +15,7 @@ function validateLabelDimensions(
   if (!Number.isFinite(w) || !Number.isFinite(h)) return null;
   const widthMm = Number(w);
   const heightMm = Number(h);
-  if (widthMm < 1 || widthMm > LABEL_MAX_MM || heightMm < 1 || heightMm > LABEL_MAX_MM)
-    return null;
+  if (widthMm < 1 || widthMm > LABEL_MAX_MM || heightMm < 1 || heightMm > LABEL_MAX_MM) return null;
   return { widthMm, heightMm };
 }
 
@@ -26,7 +30,8 @@ export function parseRetryAfterSeconds(header: string | null): number {
 
 export async function fetchLabelaryPng(
   params: FetchLabelaryPngParams,
-  signal?: AbortSignal
+  signal?: AbortSignal,
+  accept: LabelaryAccept = 'image/png'
 ): Promise<Blob> {
   const { zpl, widthMm, heightMm, dpmm } = params;
 
@@ -66,7 +71,7 @@ export async function fetchLabelaryPng(
   try {
     res = await fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: accept },
       body: zpl,
       signal: effectiveSignal,
     });

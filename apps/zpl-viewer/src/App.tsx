@@ -3,8 +3,18 @@ import { ZplInput } from '@/components/ZplInput';
 import { OptionsPanel } from '@/components/OptionsPanel';
 import { ZplPreview } from '@/components/ZplPreview';
 import { useZplPreview } from '@/hooks/use-zpl-preview';
-import type { Example, LabelaryDpmm } from '@/types/zpl-preview';
+import { fetchLabelaryPng } from '@/api/labelary';
+import type { Example, FetchLabelaryPngParams, LabelaryAccept, LabelaryDpmm } from '@/types/zpl-preview';
 import examples from '@/data/examples.json';
+
+function downloadBlob(blob: Blob, filename: string) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+}
 
 const EXAMPLES = examples as Example[];
 const THROTTLE_MS = 400;
@@ -16,6 +26,7 @@ export default function App() {
   const [dpmm, setDpmm] = useState<LabelaryDpmm>(8);
 
   const lastTriggerRef = useRef(0);
+  const [isDownloading, setIsDownloading] = useState(false);
 
   const { trigger, clearPreview, imageUrl, isPending, error, retryCountdown } = useZplPreview();
 
@@ -51,6 +62,28 @@ export default function App() {
   }, [handlePreview]);
 
   const isPreviewDisabled = isPending || retryCountdown > 0 || !zpl.trim();
+  const canDownload = !!zpl.trim() && !isPending && !isDownloading;
+
+  const handleDownloadZpl = () => {
+    const blob = new Blob([zpl], { type: 'text/plain' });
+    downloadBlob(blob, 'label.zpl');
+  };
+
+  const handleDownloadLabelary = async (
+    accept: LabelaryAccept,
+    filename: string
+  ) => {
+    setIsDownloading(true);
+    try {
+      const params: FetchLabelaryPngParams = { zpl, widthMm, heightMm, dpmm };
+      const blob = await fetchLabelaryPng(params, undefined, accept);
+      downloadBlob(blob, filename);
+    } catch {
+      // silent — preview error UI handles feedback
+    } finally {
+      setIsDownloading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-zinc-50">
@@ -101,6 +134,33 @@ export default function App() {
               >
                 {retryCountdown > 0 ? `${retryCountdown}초 후 재시도` : 'Preview'}
               </button>
+
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  disabled={!canDownload}
+                  onClick={handleDownloadZpl}
+                  className="flex-1 rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-700 transition-colors hover:border-zinc-400 disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  ZPL 저장
+                </button>
+                <button
+                  type="button"
+                  disabled={!canDownload}
+                  onClick={() => handleDownloadLabelary('image/png', 'label.png')}
+                  className="flex-1 rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-700 transition-colors hover:border-zinc-400 disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  PNG 저장
+                </button>
+                <button
+                  type="button"
+                  disabled={!canDownload}
+                  onClick={() => handleDownloadLabelary('application/pdf', 'label.pdf')}
+                  className="flex-1 rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-700 transition-colors hover:border-zinc-400 disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  PDF 저장
+                </button>
+              </div>
 
               <p className="text-xs text-zinc-400">
                 ZPL 데이터는 미리보기 생성을 위해 Labelary(labelary.com)로 전송되며 최대 60일간
