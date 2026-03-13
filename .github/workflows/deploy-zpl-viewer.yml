@@ -2,10 +2,9 @@ name: Deploy zpl-viewer
 
 on:
   push:
-    branches:
-      - main
-    paths:
-      - 'apps/zpl-viewer/**'
+    tags:
+      - 'zpl-viewer/v*'
+  workflow_dispatch:
 
 jobs:
   deploy:
