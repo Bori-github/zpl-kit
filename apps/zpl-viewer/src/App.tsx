@@ -4,7 +4,12 @@ import { OptionsPanel } from '@/components/OptionsPanel';
 import { ZplPreview } from '@/components/ZplPreview';
 import { useZplPreview } from '@/hooks/use-zpl-preview';
 import { fetchLabelaryPng } from '@/api/labelary';
-import type { Example, FetchLabelaryPngParams, LabelaryAccept, LabelaryDpmm } from '@/types/zpl-preview';
+import type {
+  Example,
+  FetchLabelaryPngParams,
+  LabelaryAccept,
+  LabelaryDpmm,
+} from '@/types/zpl-preview';
 import examples from '@/data/examples.json';
 
 function downloadBlob(blob: Blob, filename: string) {
@@ -69,10 +74,7 @@ export default function App() {
     downloadBlob(blob, 'label.zpl');
   };
 
-  const handleDownloadLabelary = async (
-    accept: LabelaryAccept,
-    filename: string
-  ) => {
+  const handleDownloadLabelary = async (accept: LabelaryAccept, filename: string) => {
     setIsDownloading(true);
     try {
       const params: FetchLabelaryPngParams = { zpl, widthMm, heightMm, dpmm };

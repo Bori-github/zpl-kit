@@ -1,3 +1,5 @@
+import axios, { isAxiosError, isCancel } from 'axios';
+
 import type {
   FetchLabelaryPngParams,
   LabelaryAccept,
@@ -6,7 +8,13 @@ import type {
 } from '@/types/zpl-preview';
 
 const LABEL_MAX_MM = 381;
-const LABELARY_BASE = 'https://api.labelary.com/v1/printers';
+
+const labelaryClient = axios.create({
+  baseURL: 'https://api.labelary.com/v1/printers',
+  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  responseType: 'blob',
+  timeout: 5000,
+});
 
 function validateLabelDimensions(
   w: unknown,
@@ -62,48 +70,47 @@ export async function fetchLabelaryPng(
 
   const widthInch = dims.widthMm / 25.4;
   const heightInch = dims.heightMm / 25.4;
-  const url = `${LABELARY_BASE}/${dpmm}dpmm/labels/${widthInch}x${heightInch}/0/`;
+  const path = `/${dpmm}dpmm/labels/${widthInch}x${heightInch}/0/`;
 
-  const timeoutSignal = AbortSignal.timeout(5000);
-  const effectiveSignal = signal ? AbortSignal.any([signal, timeoutSignal]) : timeoutSignal;
-
-  let res: Response;
   try {
-    res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: accept },
-      body: zpl,
-      signal: effectiveSignal,
+    const res = await labelaryClient.post<Blob>(path, zpl, {
+      headers: { Accept: accept },
+      signal,
     });
+
+    return res.data;
   } catch (e) {
-    if (e instanceof Error && (e.name === 'AbortError' || e.name === 'TimeoutError')) {
-      throw e;
+    if (isCancel(e) || (e instanceof Error && e.name === 'AbortError')) throw e;
+
+    if (isAxiosError(e)) {
+      if (e.code === 'ECONNABORTED') throw e;
+
+      const status = e.response?.status;
+
+      if (status === 429) {
+        const retryAfterSeconds = parseRetryAfterSeconds(
+          e.response?.headers['retry-after'] ?? null
+        );
+        const err: ZplPreviewError = {
+          code: 'RATE_LIMIT',
+          message: '요청이 너무 많습니다. 잠시 후 다시 시도해 주세요',
+          retryAfterSeconds,
+        };
+        throw err;
+      }
+
+      let message = `오류가 발생했습니다 (HTTP ${status})`;
+      try {
+        const text = await (e.response?.data as Blob).text();
+        if (text) message = text.substring(0, 200);
+      } catch {
+        // ignore
+      }
+      const err: ZplPreviewError = { code: 'BAD_REQUEST', message };
+      throw err;
     }
+
     const err: ZplPreviewError = { code: 'NETWORK', message: '네트워크 오류가 발생했습니다' };
     throw err;
   }
-
-  if (res.status === 429) {
-    const retryAfterSeconds = parseRetryAfterSeconds(res.headers.get('Retry-After'));
-    const err: ZplPreviewError = {
-      code: 'RATE_LIMIT',
-      message: '요청이 너무 많습니다. 잠시 후 다시 시도해 주세요',
-      retryAfterSeconds,
-    };
-    throw err;
-  }
-
-  if (!res.ok) {
-    let message = `오류가 발생했습니다 (HTTP ${res.status})`;
-    try {
-      const text = await res.text();
-      if (text) message = text.substring(0, 200);
-    } catch {
-      // ignore
-    }
-    const err: ZplPreviewError = { code: 'BAD_REQUEST', message };
-    throw err;
-  }
-
-  return res.blob();
 }

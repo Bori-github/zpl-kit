@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
+import { isCancel } from 'axios';
 import { fetchLabelaryPng } from '@/api/labelary';
 import type { FetchLabelaryPngParams, ZplPreviewError } from '@/types/zpl-preview';
 
@@ -71,6 +72,7 @@ export function useZplPreview() {
       }
     },
     onError: (err) => {
+      if (isCancel(err)) return;
       if ('name' in (err as unknown as Error)) {
         const name = (err as unknown as Error).name;
         if (name === 'AbortError' || name === 'TimeoutError') return;
