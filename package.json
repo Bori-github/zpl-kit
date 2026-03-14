@@ -11,7 +11,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "docs:dev": "pnpm --filter docs dev",
-    "docs:build": "pnpm --filter docs build"
+    "docs:build": "pnpm --filter docs build",
+    "docs:preview": "pnpm --filter docs preview"
   },
   "devDependencies": {
     "rolldown": "^1.0.0-beta.51",
