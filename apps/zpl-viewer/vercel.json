@@ -1,5 +1,6 @@
 {
   "outputDirectory": "dist",
   "installCommand": "pnpm install",
-  "buildCommand": "pnpm build"
+  "buildCommand": "pnpm build",
+  "ignoreCommand": "git diff HEAD^ HEAD --quiet -- apps/zpl-viewer/ apps/react-zpl/ package.json pnpm-workspace.yaml pnpm-lock.yaml"
 }
