@@ -1,5 +1,6 @@
 # 의존성 및 패키지 관리
 node_modules
+.pnpm-store
 
 # 빌드 출력물
 dist/
@@ -24,3 +25,5 @@ coverage
 
 # 참조 레포지토리 (변경점 추적 안 함)
 references/
+plans/
+record/
