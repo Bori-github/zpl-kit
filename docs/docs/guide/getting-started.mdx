@@ -1,3 +1,27 @@
 # Getting Started
 
-This is the getting started guide for ZPL Kit.
+ZPL Kit를 사용하여 React 애플리케이션에서 ZPL 라벨을 생성할 수 있습니다.
+
+## 설치
+
+```bash
+pnpm add @zpl-kit/react-zpl
+```
+
+## 기본 사용법
+
+`ZplLabel`과 `Text` 컴포넌트를 사용해 간단한 라벨을 만들어 보세요. 아래 코드를 수정해 보며 동작을 확인할 수 있습니다.
+
+```tsx live
+import { ZplLabel, Text } from '@zpl-kit/react-zpl';
+
+export default function ExampleLabel() {
+  return (
+    <ZplLabel width={200} height={100}>
+      <Text fieldOriginX={0} fieldOriginY={0}>
+        Hello ZPL
+      </Text>
+    </ZplLabel>
+  );
+}
+```
