@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "pnpm --filter './apps/*' --filter './demos/*' dev",
+    "dev": "pnpm --filter './apps/*' dev",
+    "demo:web": "pnpm --filter './demos/web' dev",
+    "demo:electron": "pnpm --filter './demos/electron' dev",
     "build": "pnpm --filter './apps/*' --filter './demos/*' build",
     "test": "vitest",
     "lint": "oxlint",
