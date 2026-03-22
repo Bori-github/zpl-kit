@@ -55,32 +55,6 @@
   font-size: 1rem;
 }
 
-.demo-box {
-  margin-top: 2rem;
-  padding: 2rem;
-  background: #f8f9fa;
-  border-radius: 8px;
-  border-left: 4px solid #667eea;
-}
-
-.demo-box p {
-  color: #495057;
-  margin-bottom: 0.75rem;
-}
-
-.demo-box p:last-child {
-  margin-bottom: 0;
-}
-
-.demo-box code {
-  background: #e9ecef;
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  font-size: 0.9em;
-  color: #d63384;
-}
-
 .privacy-notice {
   font-size: 0.9rem;
   color: #856404;

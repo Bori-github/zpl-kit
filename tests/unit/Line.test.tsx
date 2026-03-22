@@ -1,14 +1,9 @@
 import { createElement } from 'react';
 import { describe, it, expect } from 'vitest';
 
-import { Line, type ZplElementContext } from '@zpl-kit/react-zpl';
+import { Line } from '@zpl-kit/react-zpl';
 
-const defaultContext: ZplElementContext = {
-  labelOrientation: 'N',
-  defaultFontName: 'J',
-  defaultFontWidth: 30,
-  defaultFontHeight: 30,
-};
+import { defaultLabelContext } from './fixtures/context';
 
 describe('Line', () => {
   describe('print - 수평선', () => {
@@ -17,7 +12,7 @@ describe('Line', () => {
         length: 100,
         direction: 'horizontal',
       });
-      expect(Line.print(el, defaultContext)).toBe('^FO0,0\\&^GB100,1,1,B,0^FS');
+      expect(Line.print(el, defaultLabelContext)).toBe('^FO0,0\\&^GB100,1,1,B,0^FS');
     });
 
     it('fieldOrigin, thickness, lineColor 지정 시 올바른 ZPL 생성', () => {
@@ -29,7 +24,7 @@ describe('Line', () => {
         thickness: 2,
         lineColor: 'B',
       });
-      expect(Line.print(el, defaultContext)).toBe(
+      expect(Line.print(el, defaultLabelContext)).toBe(
         '^FO10,20\\&^GB100,2,2,B,0^FS'
       );
     });
@@ -40,7 +35,7 @@ describe('Line', () => {
         direction: 'horizontal',
         lineColor: 'W',
       });
-      expect(Line.print(el, defaultContext)).toContain('^GB50,1,1,W,0^FS');
+      expect(Line.print(el, defaultLabelContext)).toContain('^GB50,1,1,W,0^FS');
     });
   });
 
@@ -50,7 +45,7 @@ describe('Line', () => {
         length: 50,
         direction: 'vertical',
       });
-      expect(Line.print(el, defaultContext)).toBe('^FO0,0\\&^GB1,50,1,B,0^FS');
+      expect(Line.print(el, defaultLabelContext)).toBe('^FO0,0\\&^GB1,50,1,B,0^FS');
     });
 
     it('fieldOrigin, thickness 지정 시 올바른 ZPL 생성', () => {
@@ -61,21 +56,21 @@ describe('Line', () => {
         fieldOriginY: 40,
         thickness: 3,
       });
-      expect(Line.print(el, defaultContext)).toBe('^FO30,40\\&^GB3,80,3,B,0^FS');
+      expect(Line.print(el, defaultLabelContext)).toBe('^FO30,40\\&^GB3,80,3,B,0^FS');
     });
   });
 
   describe('print - 검증', () => {
     it('length < 1 시 에러 throw', () => {
       const el = createElement(Line, { length: 0, direction: 'horizontal' });
-      expect(() => Line.print(el, defaultContext)).toThrow(
+      expect(() => Line.print(el, defaultLabelContext)).toThrow(
         'length는 1 이상이어야 합니다'
       );
     });
 
     it('length가 음수일 때 에러 throw', () => {
       const el = createElement(Line, { length: -10, direction: 'vertical' });
-      expect(() => Line.print(el, defaultContext)).toThrow(
+      expect(() => Line.print(el, defaultLabelContext)).toThrow(
         'length는 1 이상이어야 합니다'
       );
     });
@@ -86,7 +81,7 @@ describe('Line', () => {
         direction: 'horizontal',
         thickness: 0,
       });
-      expect(() => Line.print(el, defaultContext)).toThrow(
+      expect(() => Line.print(el, defaultLabelContext)).toThrow(
         'thickness는 1 이상이어야 합니다'
       );
     });
