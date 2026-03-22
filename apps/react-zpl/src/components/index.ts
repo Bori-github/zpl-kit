@@ -4,3 +4,4 @@ export * from './Line';
 export * from './Text';
 export * from './Circle';
 export * from './Ellipse';
+export * from './QrCode';
