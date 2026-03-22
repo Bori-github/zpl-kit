@@ -2,7 +2,7 @@ import { createElement } from 'react';
 import { describe, expect, it } from 'vitest';
 
 import { QrCode } from '@zpl-kit/react-zpl';
-import { testLabelContext } from './fixtures/context';
+import { defaultLabelContext } from './fixtures/context';
 
 describe('QrCode.print', () => {
   it('emits ^FO, ^BQ, and ^FD with matching error correction (QA, + value)', () => {
@@ -15,7 +15,7 @@ describe('QrCode.print', () => {
       },
       'https://example.com'
     );
-    const zpl = QrCode.print(el, testLabelContext());
+    const zpl = QrCode.print(el, defaultLabelContext);
     expect(zpl).toBe(
       '^FO40,60\\&^BQN,2,4,Q,7\\&^FDQA,https://example.com\\&^FS'
     );
@@ -23,12 +23,12 @@ describe('QrCode.print', () => {
 
   it('throws on empty children', () => {
     const el = createElement(QrCode, {}, '');
-    expect(() => QrCode.print(el, testLabelContext())).toThrow(/빈 문자열/);
+    expect(() => QrCode.print(el, defaultLabelContext)).toThrow(/빈 문자열/);
   });
 
   it('throws when children is not a string', () => {
     const el = createElement(QrCode, {}, <span />);
-    expect(() => QrCode.print(el, testLabelContext())).toThrow(
+    expect(() => QrCode.print(el, defaultLabelContext)).toThrow(
       /문자열만 허용/
     );
   });
@@ -43,7 +43,7 @@ describe('QrCode.print', () => {
       },
       'x'
     );
-    const zpl = QrCode.print(el, testLabelContext());
+    const zpl = QrCode.print(el, defaultLabelContext);
     expect(zpl).toContain('^BQR,2,2,M,7');
     expect(zpl).toContain('^FDMA,x');
   });
