@@ -24,8 +24,8 @@ export const printChild = (
     // TODO: print element with context
     if (isZplElement(element.type)) {
       children.push(element.type.print(element, context));
-    } else if (node.props.children) {
-      children.push(printChild(node.props.children, context));
+    } else if (element.props.children) {
+      children.push(printChild(element.props.children, context));
     }
   }
 
