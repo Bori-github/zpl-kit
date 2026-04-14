@@ -10,7 +10,8 @@ import {
   startFormat,
 } from '../commands';
 import { ORIENTATION, UTF8_ENCODING } from '../constants';
-import { ObjectValues, ZplElementContext } from '../types';
+import { LabelRootNode, ObjectValues, ZplElementContext } from '../types';
+import { renderChildren } from './renderChildNode';
 
 export interface LabelCoreProps {
   width: number;
@@ -24,7 +25,7 @@ export interface LabelCoreProps {
   defaultFontHeight?: number;
 }
 
-export function renderLabel(props: LabelCoreProps, children: string[]): string {
+export function renderLabel(node: LabelRootNode): string {
   const {
     width,
     height,
@@ -35,7 +36,9 @@ export function renderLabel(props: LabelCoreProps, children: string[]): string {
     defaultFontName = 'J',
     defaultFontWidth = 30,
     defaultFontHeight = 30,
-  } = props;
+  } = node.props;
+
+  const context = createLabelContext(node.props);
 
   const output: string[] = [];
 
@@ -52,7 +55,7 @@ export function renderLabel(props: LabelCoreProps, children: string[]): string {
       height: defaultFontHeight,
     })
   );
-  output.push(...children);
+  output.push(...renderChildren(node.children, context));
   output.push(endFormat());
 
   return output.join(newLine());

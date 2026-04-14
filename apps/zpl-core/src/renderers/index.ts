@@ -5,3 +5,4 @@ export * from './diagonalLine';
 export * from './circle';
 export * from './ellipse';
 export * from './qrCode';
+export * from './renderChildNode';

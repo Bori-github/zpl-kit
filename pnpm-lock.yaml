@@ -26,6 +26,9 @@ importers:
 
   apps/react-zpl:
     dependencies:
+      '@zpl-kit/zpl-core':
+        specifier: workspace:*
+        version: link:../zpl-core
       react:
         specifier: ^18.3.0
         version: 18.3.1
