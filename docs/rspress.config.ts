@@ -7,6 +7,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   root: 'docs',
+  base: '/zpl-kit/',
   title: 'ZPL Kit',
   description: 'ZPL Kit Documentation',
   ssg: false, // LiveDemo + @zpl-kit/react-zpl SSG 시 'react' 모듈 resolve 실패. CSR 사용.
