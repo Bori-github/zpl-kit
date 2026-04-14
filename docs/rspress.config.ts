@@ -13,13 +13,14 @@ export default defineConfig({
   ssg: false, // LiveDemo + @zpl-kit/react-zpl SSG 시 'react' 모듈 resolve 실패. CSR 사용.
   plugins: [
     liveDemoPluginRspress({
-      includeModules: ['@zpl-kit/react-zpl'],
+      includeModules: ['@zpl-kit/react-zpl', '@zpl-kit/zpl-core'],
     }),
   ],
   builderConfig: {
     resolve: {
       alias: {
         '@zpl-kit/react-zpl': path.resolve(__dirname, '../apps/react-zpl/src/index.ts'),
+        '@zpl-kit/zpl-core': path.resolve(__dirname, '../apps/zpl-core/src/index.ts'),
       },
     },
   },
