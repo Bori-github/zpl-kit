@@ -1,0 +1,38 @@
+# renderQrCode
+
+QR 코드를 생성합니다. `^BQ` 명령어를 사용합니다.
+
+```ts
+function renderQrCode(props: QrCodeCoreProps, context: ZplElementContext): string
+```
+
+## 사용 예시
+
+```ts
+import { renderQrCode, createLabelContext } from '@zpl-kit/zpl-core';
+
+const context = createLabelContext({ width: 400, height: 200 });
+
+const zpl = renderQrCode(
+  {
+    text: 'https://example.com',
+    fieldOriginX: 10,
+    fieldOriginY: 10,
+    magnification: 5,
+  },
+  context
+);
+```
+
+## Props
+
+| 속성 | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| `text` | `string` | 필수 | QR 코드에 담을 데이터 |
+| `fieldOriginX` | `number` | `0` | X 좌표 |
+| `fieldOriginY` | `number` | `0` | Y 좌표 |
+| `fieldOrientation` | `'N' \| 'R' \| 'I' \| 'B'` | context 상속 | 방향 |
+| `model` | `1 \| 2` | `2` | QR 모델 |
+| `magnification` | `number` | `5` | 확대 배율 (1~100) |
+| `errorCorrectionLevel` | `'H' \| 'Q' \| 'M' \| 'L'` | `'Q'` | 오류 복원 수준 |
+| `maskValue` | `number` | `7` | 마스크 값 (0~7) |

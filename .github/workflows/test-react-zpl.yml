@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'apps/react-zpl/**'
+      - 'apps/zpl-core/**'
       - 'tests/**'
       - '.github/workflows/test-react-zpl.yml'
 
@@ -24,6 +25,9 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
+
+      - name: Build zpl-core
+        run: pnpm --filter @zpl-kit/zpl-core build
 
       - name: Build react-zpl
         run: pnpm --filter @zpl-kit/react-zpl build

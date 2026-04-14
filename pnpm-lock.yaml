@@ -26,6 +26,9 @@ importers:
 
   apps/react-zpl:
     dependencies:
+      '@zpl-kit/zpl-core':
+        specifier: workspace:*
+        version: link:../zpl-core
       react:
         specifier: ^18.3.0
         version: 18.3.1
@@ -39,6 +42,15 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.7(@types/react@18.3.27)
+      rolldown:
+        specifier: ^1.0.0-beta.51
+        version: 1.0.0-beta.51
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+
+  apps/zpl-core:
+    devDependencies:
       rolldown:
         specifier: ^1.0.0-beta.51
         version: 1.0.0-beta.51
@@ -211,6 +223,9 @@ importers:
       '@zpl-kit/react-zpl':
         specifier: workspace:*
         version: link:../apps/react-zpl
+      '@zpl-kit/zpl-core':
+        specifier: workspace:*
+        version: link:../apps/zpl-core
       react:
         specifier: ^18.3.0
         version: 18.3.1

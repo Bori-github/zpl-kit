@@ -1,0 +1,72 @@
+# zpl-core
+
+`@zpl-kit/zpl-core`는 React 없이 Node.js 환경에서 ZPL을 생성할 수 있는 순수 함수 라이브러리입니다.
+
+## 왜 zpl-core인가?
+
+`@zpl-kit/react-zpl`은 React 컴포넌트 트리로 ZPL을 선언적으로 작성할 수 있게 해주지만, React에 의존하기 때문에 서버사이드나 CLI 환경에서는 사용이 어렵습니다.
+
+`@zpl-kit/zpl-core`는 이 문제를 해결합니다.
+
+|                   | `@zpl-kit/react-zpl` | `@zpl-kit/zpl-core` |
+| ----------------- | -------------------- | ------------------- |
+| React 필요        | ✓                    | ✗                   |
+| Node.js 단독 사용 | ✗                    | ✓                   |
+| 선언적 JSX 문법   | ✓                    | ✗                   |
+| 순수 함수 API     | ✗                    | ✓                   |
+
+## 설치
+
+```bash
+pnpm add @zpl-kit/zpl-core
+```
+
+## 기본 사용법
+
+`LabelRootNode` 트리를 구성한 뒤 `renderLabel`에 넘기면 ZPL 문자열이 반환됩니다.
+
+```ts
+import { renderLabel, createLabelContext } from '@zpl-kit/zpl-core';
+
+const node = {
+  type: 'label',
+  props: { width: 400, height: 200 },
+  children: [
+    {
+      type: 'text',
+      props: { text: 'Hello, ZPL!', fieldOriginX: 10, fieldOriginY: 10 },
+    },
+    {
+      type: 'line',
+      props: {
+        direction: 'horizontal',
+        length: 300,
+        fieldOriginX: 10,
+        fieldOriginY: 50,
+      },
+    },
+  ],
+};
+
+const zpl = renderLabel(node);
+console.log(zpl);
+// ^XA^PW400^LL200...^XZ
+```
+
+## 아키텍처
+
+`@zpl-kit/react-zpl`은 내부적으로 `@zpl-kit/zpl-core`를 사용합니다.
+
+```
+React 환경                      Node.js 환경
+
+<ZplLabel>                      LabelRootNode
+  <Text />          →  →  →     ├── TextNode
+  <Line />       toLabelNode    └── LineNode
+</ZplLabel>                           ↓
+                              renderLabel()
+                                      ↓
+                                ZPL 문자열
+```
+
+`react-zpl`의 `ZplLabel.print()`는 JSX 트리를 `LabelRootNode`로 변환한 뒤 `renderLabel`을 호출합니다. Node.js 환경에서는 이 변환 없이 `LabelRootNode`를 직접 구성할 수 있습니다.

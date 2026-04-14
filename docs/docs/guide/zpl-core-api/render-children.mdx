@@ -1,0 +1,49 @@
+# renderChildren / renderChildNode
+
+`ChildLabelNode` 배열을 ZPL 문자열로 변환하는 유틸리티 함수입니다. 커스텀 렌더링 파이프라인 구성에 사용합니다.
+
+---
+
+## renderChildren
+
+여러 `ChildLabelNode`를 한 번에 렌더링합니다.
+
+```ts
+function renderChildren(nodes: ChildLabelNode[], context: ZplElementContext): string[]
+```
+
+## 사용 예시
+
+```ts
+import { renderChildren, createLabelContext } from '@zpl-kit/zpl-core';
+
+const context = createLabelContext({ width: 400, height: 200 });
+
+const results = renderChildren(
+  [
+    { type: 'text', props: { text: 'Item 1', fieldOriginX: 10, fieldOriginY: 10 } },
+    { type: 'line', props: { direction: 'horizontal', length: 200, fieldOriginX: 10, fieldOriginY: 40 } },
+  ],
+  context
+);
+// results: string[]
+```
+
+---
+
+## renderChildNode
+
+단일 `ChildLabelNode`를 ZPL 문자열로 변환합니다. `node.type`에 따라 적절한 renderer로 dispatch됩니다.
+
+```ts
+function renderChildNode(node: ChildLabelNode, context: ZplElementContext): string
+```
+
+| node.type | 호출되는 renderer |
+|-----------|-------------------|
+| `'text'` | `renderText` |
+| `'line'` | `renderLine` |
+| `'diagonalLine'` | `renderDiagonalLine` |
+| `'circle'` | `renderCircle` |
+| `'ellipse'` | `renderEllipse` |
+| `'qrCode'` | `renderQrCode` |

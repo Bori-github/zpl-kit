@@ -1,0 +1,47 @@
+# renderLabel
+
+`LabelRootNode`를 받아 완성된 ZPL 문자열을 반환합니다.
+
+```ts
+function renderLabel(node: LabelRootNode): string
+```
+
+## 사용 예시
+
+```ts
+import { renderLabel } from '@zpl-kit/zpl-core';
+
+const zpl = renderLabel({
+  type: 'label',
+  props: { width: 400, height: 200 },
+  children: [
+    { type: 'text', props: { text: 'Hello', fieldOriginX: 10, fieldOriginY: 10 } },
+  ],
+});
+```
+
+## LabelRootNode props
+
+| 속성 | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| `width` | `number` | 필수 | 라벨 너비 (dots) |
+| `height` | `number` | 필수 | 라벨 높이 (dots) |
+| `offsetX` | `number` | `0` | X 오프셋 |
+| `offsetY` | `number` | `0` | Y 오프셋 |
+| `labelOrientation` | `'N' \| 'R' \| 'I' \| 'B'` | `'N'` | 라벨 방향 |
+| `encoding` | `string[]` | `['28']` | 문자 인코딩 (UTF-8) |
+| `defaultFontName` | `string` | `'J'` | 기본 폰트 |
+| `defaultFontWidth` | `number` | `30` | 기본 폰트 너비 |
+| `defaultFontHeight` | `number` | `30` | 기본 폰트 높이 |
+
+---
+
+# createLabelContext
+
+`LabelCoreProps`로부터 `ZplElementContext`를 생성합니다. `renderText`, `renderQrCode`처럼 context가 필요한 renderer를 단독으로 사용할 때 전달합니다.
+
+```ts
+function createLabelContext(props: LabelCoreProps): ZplElementContext
+```
+
+`renderLabel` 내부에서 자동으로 호출되므로, 개별 renderer를 단독 사용하는 경우에만 필요합니다.

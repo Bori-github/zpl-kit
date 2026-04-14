@@ -1,0 +1,48 @@
+# renderText
+
+텍스트를 ZPL 필드 명령어로 변환합니다. 라벨의 기본 폰트를 상속하거나 직접 지정할 수 있습니다.
+
+```ts
+function renderText(props: TextCoreProps, context: ZplElementContext): string
+```
+
+## 사용 예시
+
+```ts
+import { renderText, createLabelContext } from '@zpl-kit/zpl-core';
+
+const context = createLabelContext({ width: 400, height: 200 });
+
+// 기본 폰트 상속
+const zpl1 = renderText(
+  { text: '기본 폰트', fieldOriginX: 10, fieldOriginY: 10 },
+  context
+);
+
+// 폰트 직접 지정
+const zpl2 = renderText(
+  {
+    text: '커스텀 폰트',
+    fontInherit: false,
+    fontName: 'B',
+    fontWidth: 30,
+    fontHeight: 30,
+    fieldOriginX: 10,
+    fieldOriginY: 50,
+  },
+  context
+);
+```
+
+## Props
+
+| 속성 | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| `text` | `string` | 필수 | 출력할 텍스트 |
+| `fieldOriginX` | `number` | `0` | X 좌표 |
+| `fieldOriginY` | `number` | `0` | Y 좌표 |
+| `fieldOrientation` | `'N' \| 'R' \| 'I' \| 'B'` | context 상속 | 필드 방향 |
+| `fontInherit` | `boolean` | `true` | context 폰트 상속 여부 |
+| `fontName` | `string` | — | 폰트명 (`fontInherit: false` 시 필수) |
+| `fontWidth` | `number` | — | 폰트 너비 (`fontInherit: false` 시 필수) |
+| `fontHeight` | `number` | — | 폰트 높이 (`fontInherit: false` 시 필수) |

@@ -1,6 +1,17 @@
 # zpl-kit
 
-React로 ZPL 라벨을 작성합니다. React 컴포넌트로 ZPL 라벨을 선언적으로 작성하면 `ZplLabel.print()`가 컴포넌트 트리를 ZPL 문자열로 변환합니다.
+ZPL 라벨을 생성하는 모노레포입니다. React 컴포넌트로 선언적으로 작성하거나, Node.js 환경에서 순수 함수로 직접 ZPL 문자열을 생성할 수 있습니다.
+
+## 패키지
+
+| 패키지 | 설명 | 환경 |
+| --- | --- | --- |
+| `@zpl-kit/react-zpl` | React 컴포넌트로 ZPL 생성 | React (브라우저 / SSR) |
+| `@zpl-kit/zpl-core` | 순수 함수로 ZPL 생성 | Node.js / 브라우저 |
+
+## @zpl-kit/react-zpl
+
+React 컴포넌트로 ZPL 라벨을 선언적으로 작성하면 `ZplLabel.print()`가 컴포넌트 트리를 ZPL 문자열로 변환합니다.
 
 ```tsx
 import { ZplLabel, Text, Line } from '@zpl-kit/react-zpl';
@@ -36,7 +47,26 @@ const zpl = ZplLabel.print(
 // ^XZ
 ```
 
-## 컴포넌트
+## @zpl-kit/zpl-core
+
+React 없이 순수 함수로 ZPL 문자열을 생성합니다. Node.js 서버, CLI 도구 등 React가 없는 환경에서 사용할 수 있습니다.
+
+```ts
+import { renderLabel, renderText, renderLine, createLabelContext } from '@zpl-kit/zpl-core';
+
+const context = createLabelContext({ width: 800, height: 400 });
+
+const zpl = renderLabel({
+  type: 'label',
+  props: { width: 800, height: 400 },
+  children: [
+    { type: 'text', props: { text: 'Hello, ZPL!', fieldOriginX: 50, fieldOriginY: 50 } },
+    { type: 'line', props: { direction: 'horizontal', length: 700, fieldOriginX: 50, fieldOriginY: 120, thickness: 3 } },
+  ],
+});
+```
+
+## react-zpl 컴포넌트
 
 ### `<ZplLabel>`
 
@@ -147,7 +177,8 @@ const zpl = ZplLabel.print(
 ```
 zpl-kit/
 ├── apps/
-│   ├── react-zpl/          # 코어 라이브러리 (@zpl-kit/react-zpl)
+│   ├── react-zpl/          # React 어댑터 (@zpl-kit/react-zpl)
+│   ├── zpl-core/           # 순수 함수 코어 (@zpl-kit/zpl-core)
 │   └── zpl-viewer/         # ZPL 뷰어 웹
 │
 ├── demos/
@@ -190,7 +221,6 @@ pnpm docs:preview   # 문서 빌드 미리보기
 
 - **ZPL 출력 줄바꿈**: 현재는 명령 사이에 줄바꿈(`\n`)을 넣습니다. 추후 제거하거나 옵션으로 제어할 예정입니다.
 - **React 19**: 모노레포 전반(코어·뷰어·데모·문서)을 React 19 기준으로 맞출 계획입니다.
-- **Node 환경**: 브라우저뿐 아니라 Node에서도 `ZplLabel.print()` 등으로 동일하게 ZPL 문자열을 얻을 수 있도록 지원을 추가할 계획입니다.
 
 ## ZPL 미리보기
 
