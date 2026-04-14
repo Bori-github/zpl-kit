@@ -1,0 +1,32 @@
+# renderEllipse
+
+타원을 그립니다. `^GE` 명령어를 사용합니다.
+
+```ts
+function renderEllipse(props: EllipseCoreProps): string
+```
+
+## 사용 예시
+
+```ts
+import { renderEllipse } from '@zpl-kit/zpl-core';
+
+const zpl = renderEllipse({
+  width: 150,
+  height: 80,
+  fieldOriginX: 50,
+  fieldOriginY: 50,
+  thickness: 2,
+});
+```
+
+## Props
+
+| 속성 | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| `width` | `number` | 필수 | 너비 (3~4095) |
+| `height` | `number` | 필수 | 높이 (3~4095) |
+| `fieldOriginX` | `number` | `0` | X 좌표 |
+| `fieldOriginY` | `number` | `0` | Y 좌표 |
+| `thickness` | `number` | `1` | 두께 (1~4095) |
+| `lineColor` | `'B' \| 'W'` | `'B'` | 색상 |

@@ -1,0 +1,41 @@
+# renderLine
+
+수평 또는 수직 직선을 그립니다. 내부적으로 `^GB` (graphicBox) 명령어를 사용합니다.
+
+```ts
+function renderLine(props: LineCoreProps): string
+```
+
+## 사용 예시
+
+```ts
+import { renderLine } from '@zpl-kit/zpl-core';
+
+// 수평선
+const h = renderLine({
+  direction: 'horizontal',
+  length: 300,
+  fieldOriginX: 10,
+  fieldOriginY: 50,
+});
+
+// 수직선
+const v = renderLine({
+  direction: 'vertical',
+  length: 100,
+  thickness: 3,
+  fieldOriginX: 200,
+  fieldOriginY: 10,
+});
+```
+
+## Props
+
+| 속성 | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| `direction` | `'horizontal' \| 'vertical'` | 필수 | 방향 |
+| `length` | `number` | 필수 | 길이 (dots, 최소 1) |
+| `fieldOriginX` | `number` | `0` | X 좌표 |
+| `fieldOriginY` | `number` | `0` | Y 좌표 |
+| `thickness` | `number` | `1` | 두께 |
+| `lineColor` | `'B' \| 'W'` | `'B'` | 색상 |

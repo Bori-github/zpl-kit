@@ -1,0 +1,10 @@
+[
+  "render-label",
+  "render-text",
+  "render-line",
+  "render-diagonal-line",
+  "render-circle",
+  "render-ellipse",
+  "render-qr-code",
+  "render-children"
+]

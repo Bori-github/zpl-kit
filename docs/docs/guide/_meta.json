@@ -1,1 +1,25 @@
-["introduction", "getting-started"]
+[
+  {
+    "type": "section-header",
+    "label": "Getting Started"
+  },
+  "introduction",
+  "quick-start",
+  {
+    "type": "divider"
+  },
+  {
+    "type": "section-header",
+    "label": "@zpl-kit/zpl-core"
+  },
+  "zpl-core-installation",
+  "zpl-core-getting-started",
+  "zpl-core-react-adapter",
+  {
+    "type": "dir",
+    "name": "zpl-core-api",
+    "label": "API",
+    "collapsible": true,
+    "collapsed": true
+  }
+]
