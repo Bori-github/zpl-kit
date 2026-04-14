@@ -46,6 +46,15 @@ importers:
         specifier: ^5.7.0
         version: 5.9.3
 
+  apps/zpl-core:
+    devDependencies:
+      rolldown:
+        specifier: ^1.0.0-beta.51
+        version: 1.0.0-beta.51
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+
   apps/zpl-viewer:
     dependencies:
       '@tanstack/react-query':

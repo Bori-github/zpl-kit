@@ -1,0 +1,25 @@
+{
+  "name": "@zpl-kit/zpl-core",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "development": "./src/index.ts",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "rolldown --watch -c rolldown.config.ts",
+    "build": "rolldown -c rolldown.config.ts && tsc --emitDeclarationOnly --noEmit false",
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "rolldown": "^1.0.0-beta.51",
+    "typescript": "^5.7.0"
+  }
+}
