@@ -27,6 +27,11 @@ export default defineConfig({
     ['meta', { name: 'twitter:title', content: '@zpl-kit — Composable ZPL for modern JavaScript' }],
     ['meta', { name: 'twitter:description', content: 'Core primitives for Node.js, declarative components for React. Build and preview ZPL labels.' }],
   ],
+  themeConfig: {
+    socialLinks: [
+      { icon: 'github', mode: 'link', content: 'https://github.com/Bori-github/zpl-kit' },
+    ],
+  },
   plugins: [
     liveDemoPluginRspress({
       includeModules: ['@zpl-kit/react-zpl', '@zpl-kit/zpl-core'],
