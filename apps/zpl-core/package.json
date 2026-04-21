@@ -1,6 +1,14 @@
 {
   "name": "@zpl-kit/zpl-core",
   "version": "0.1.0",
+  "author": "boriguri <qhflrnfl4324@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://boriguri.github.io/zpl-kit/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bori-github/zpl-kit.git",
+    "directory": "apps/zpl-core"
+  },
   "type": "module",
   "files": [
     "dist"

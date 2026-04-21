@@ -1,6 +1,14 @@
 {
   "name": "@zpl-kit/react-zpl",
   "version": "0.1.0",
+  "author": "boriguri <qhflrnfl4324@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://boriguri.github.io/zpl-kit/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bori-github/zpl-kit.git",
+    "directory": "apps/react-zpl"
+  },
   "type": "module",
   "files": [
     "dist"
