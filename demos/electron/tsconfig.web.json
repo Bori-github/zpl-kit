@@ -20,7 +20,8 @@
     "paths": {
       "@/*": ["./src/renderer/src/*"],
       "@renderer/*": ["./src/renderer/src/*"],
-      "@zpl-kit/react-zpl": ["../../apps/react-zpl/src"]
+      "@zpl-kit/react-zpl": ["../../apps/react-zpl/src"],
+      "@zpl-kit/zpl-core": ["../../apps/zpl-core/src"]
     }
   },
   "include": [

@@ -19,7 +19,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@zpl-kit/react-zpl": ["../../apps/react-zpl/src"]
+      "@zpl-kit/react-zpl": ["../../apps/react-zpl/src"],
+      "@zpl-kit/zpl-core": ["../../apps/zpl-core/src"]
     }
   },
   "include": ["src"],
