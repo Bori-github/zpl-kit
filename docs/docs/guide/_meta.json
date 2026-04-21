@@ -21,5 +21,22 @@
     "label": "API",
     "collapsible": true,
     "collapsed": true
+  },
+  {
+    "type": "divider"
+  },
+  {
+    "type": "section-header",
+    "label": "@zpl-kit/react-zpl"
+  },
+  "react-zpl-installation",
+  "react-zpl-getting-started",
+  "react-zpl-components",
+  {
+    "type": "dir",
+    "name": "react-zpl-api",
+    "label": "API",
+    "collapsible": true,
+    "collapsed": true
   }
 ]

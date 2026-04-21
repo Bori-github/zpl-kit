@@ -1,0 +1,25 @@
+# Circle
+
+원을 그립니다. 내부적으로 `^GC` 명령어를 사용합니다.
+
+## 사용 예시
+
+```tsx
+import { ZplLabel, Circle } from '@zpl-kit/react-zpl';
+
+ZplLabel.print(
+  <ZplLabel width={400} height={200}>
+    <Circle diameter={80} fieldOriginX={100} fieldOriginY={50} thickness={2} />
+  </ZplLabel>
+);
+```
+
+## Props
+
+| 속성 | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| `diameter` | `number` | 필수 | 지름 |
+| `fieldOriginX` | `number` | `0` | X 좌표 |
+| `fieldOriginY` | `number` | `0` | Y 좌표 |
+| `thickness` | `number` | `1` | 두께 |
+| `lineColor` | `'B' \| 'W'` | `'B'` | 색상 |

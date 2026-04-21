@@ -1,0 +1,29 @@
+# Line
+
+수평 또는 수직 직선을 그립니다. 내부적으로 `^GB` 명령어를 사용합니다.
+
+## 사용 예시
+
+```tsx
+import { ZplLabel, Line } from '@zpl-kit/react-zpl';
+
+ZplLabel.print(
+  <ZplLabel width={400} height={200}>
+    {/* 수평선 */}
+    <Line direction="horizontal" length={300} fieldOriginX={10} fieldOriginY={50} />
+    {/* 수직선 */}
+    <Line direction="vertical" length={100} thickness={3} fieldOriginX={200} fieldOriginY={10} />
+  </ZplLabel>
+);
+```
+
+## Props
+
+| 속성 | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| `direction` | `'horizontal' \| 'vertical'` | 필수 | 방향 |
+| `length` | `number` | 필수 | 길이 (dots) |
+| `fieldOriginX` | `number` | `0` | X 좌표 |
+| `fieldOriginY` | `number` | `0` | Y 좌표 |
+| `thickness` | `number` | `1` | 두께 |
+| `lineColor` | `'B' \| 'W'` | `'B'` | 색상 |

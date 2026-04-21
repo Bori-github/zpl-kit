@@ -1,0 +1,51 @@
+# 시작하기
+
+JSX 트리를 구성하고 `ZplLabel.print()`에 넘기면 ZPL 문자열이 반환됩니다.
+
+## 기본 사용법
+
+```tsx
+import { ZplLabel, Text } from '@zpl-kit/react-zpl';
+
+const element = (
+  <ZplLabel width={400} height={200}>
+    <Text fieldOriginX={10} fieldOriginY={10}>
+      Hello, ZPL!
+    </Text>
+  </ZplLabel>
+);
+
+const zpl = ZplLabel.print(element);
+console.log(zpl);
+// ^XA^PW400^LL200...^XZ
+```
+
+## 여러 요소 조합
+
+```tsx
+import { ZplLabel, Text, Line, QrCode } from '@zpl-kit/react-zpl';
+
+const zpl = ZplLabel.print(
+  <ZplLabel width={400} height={300}>
+    <Text fieldOriginX={10} fieldOriginY={10}>배송 라벨</Text>
+    <Line direction="horizontal" length={380} fieldOriginX={10} fieldOriginY={40} />
+    <QrCode fieldOriginX={10} fieldOriginY={60} magnification={5}>
+      https://example.com
+    </QrCode>
+  </ZplLabel>
+);
+```
+
+## 지원하는 컴포넌트
+
+| 컴포넌트 | 설명 |
+|----------|------|
+| `ZplLabel` | 라벨 루트 컨테이너 |
+| `Text` | 텍스트 필드 |
+| `Line` | 수평/수직 직선 |
+| `DiagonalLine` | 대각선 |
+| `Circle` | 원 |
+| `Ellipse` | 타원 |
+| `QrCode` | QR 코드 |
+
+전체 props는 [API Reference](/guide/react-zpl-api/zpl-label)를 참고하세요.

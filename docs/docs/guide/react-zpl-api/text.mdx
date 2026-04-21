@@ -1,0 +1,45 @@
+# Text
+
+텍스트를 출력합니다. `children`에 출력할 문자열을 넣습니다. 라벨의 기본 폰트를 상속하거나 직접 지정할 수 있습니다.
+
+## 사용 예시
+
+```tsx
+import { ZplLabel, Text } from '@zpl-kit/react-zpl';
+
+// 기본 폰트 상속
+ZplLabel.print(
+  <ZplLabel width={400} height={200}>
+    <Text fieldOriginX={10} fieldOriginY={10}>기본 폰트</Text>
+  </ZplLabel>
+);
+
+// 폰트 직접 지정
+ZplLabel.print(
+  <ZplLabel width={400} height={200}>
+    <Text
+      fontInherit={false}
+      fontName="B"
+      fontWidth={30}
+      fontHeight={30}
+      fieldOriginX={10}
+      fieldOriginY={50}
+    >
+      커스텀 폰트
+    </Text>
+  </ZplLabel>
+);
+```
+
+## Props
+
+| 속성 | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| `children` | `string` | 필수 | 출력할 텍스트 |
+| `fieldOriginX` | `number` | `0` | X 좌표 |
+| `fieldOriginY` | `number` | `0` | Y 좌표 |
+| `fieldOrientation` | `'N' \| 'R' \| 'I' \| 'B'` | `ZplLabel` 상속 | 필드 방향 |
+| `fontInherit` | `boolean` | `true` | `ZplLabel` 기본 폰트 상속 여부 |
+| `fontName` | `string` | — | 폰트명 (`fontInherit: false` 시 필수) |
+| `fontWidth` | `number` | — | 폰트 너비 (`fontInherit: false` 시 필수) |
+| `fontHeight` | `number` | — | 폰트 높이 (`fontInherit: false` 시 필수) |

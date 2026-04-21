@@ -1,0 +1,35 @@
+# QrCode
+
+QR 코드를 생성합니다. `children`에 인코딩할 데이터를 문자열로 넣습니다. 내부적으로 `^BQ` 명령어를 사용합니다.
+
+## 사용 예시
+
+```tsx
+import { ZplLabel, QrCode } from '@zpl-kit/react-zpl';
+
+ZplLabel.print(
+  <ZplLabel width={400} height={200}>
+    <QrCode
+      fieldOriginX={10}
+      fieldOriginY={10}
+      magnification={5}
+      errorCorrectionLevel="Q"
+    >
+      https://example.com
+    </QrCode>
+  </ZplLabel>
+);
+```
+
+## Props
+
+| 속성 | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| `children` | `string` | 필수 | QR 코드에 담을 데이터 |
+| `fieldOriginX` | `number` | `0` | X 좌표 |
+| `fieldOriginY` | `number` | `0` | Y 좌표 |
+| `fieldOrientation` | `'N' \| 'R' \| 'I' \| 'B'` | `ZplLabel` 상속 | 방향 |
+| `model` | `1 \| 2` | `2` | QR 모델 |
+| `magnification` | `number` | `5` | 확대 배율 (1~100) |
+| `errorCorrectionLevel` | `'H' \| 'Q' \| 'M' \| 'L'` | `'Q'` | 오류 복원 수준 |
+| `maskValue` | `number` | `7` | 마스크 값 (0~7) |
