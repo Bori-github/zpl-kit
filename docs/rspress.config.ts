@@ -7,6 +7,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   root: 'docs',
+  globalStyles: path.join(__dirname, 'styles/index.css'),
   base: '/zpl-kit/',
   title: 'ZPL Kit',
   description: 'ZPL Kit Documentation',

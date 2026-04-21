@@ -1,56 +1,24 @@
 ---
 pageType: home
+
+hero:
+  name: '@zpl-kit'
+  text: Composable ZPL for modern JavaScript
+  tagline: Core primitives for Node.js, declarative components for React
+  actions:
+    - theme: brand
+      text: Quick Start
+      link: /guide/quick-start
+
+features:
+  - title: 선언적 라벨 작성
+    details: ZplLabel, Text, Line, Circle, Ellipse, DiagonalLine, QrCode — React 컴포넌트로 ZPL 라벨 구조를 선언적으로 작성해요.
+  - title: 두 가지 패키지
+    details: '@zpl-kit/react-zpl로 JSX 기반 선언적 작성, @zpl-kit/zpl-core로 React 없이 Node.js·서버·CLI 환경에서도 사용할 수 있어요.'
+  - title: 견고한 타입
+    details: 모든 컴포넌트와 함수에 엄격한 TypeScript 타입을 제공해요.
+  - title: ZPL 즉시 출력
+    details: ZplLabel.print()로 React 트리 전체를 ^XA...^XZ ZPL 문자열로 변환해요.
+  - title: 모든 환경에서 사용 가능
+    details: 브라우저, Node.js, Electron 등 다양한 JavaScript 환경을 지원해요.
 ---
-
-# ZPL Kit
-
-<div
-  style={{
-    fontSize: '1.2rem',
-    color: '#666',
-    marginBottom: '2rem',
-  }}
->
-  React 기반 ZPL 라이브러리로 라벨 프린팅을 쉽게 처리하세요.
-</div>
-
-## 시작하기
-
-ZPL Kit를 사용하여 React 애플리케이션에서 ZPL 라벨을 생성하고 관리할 수 있습니다.
-
-```bash
-# 설치
-pnpm add @zpl-kit/react-zpl
-```
-
-## 빠른 시작
-
-```tsx
-import { ZPLKit } from '@zpl-kit/react-zpl';
-
-function App() {
-  return (
-    <ZPLKit>
-      <div>ZPL 라벨 컨텐츠</div>
-    </ZPLKit>
-  );
-}
-```
-
-## 주요 기능
-
-- 🚀 **React 통합**: React 컴포넌트로 쉽게 사용
-- 📦 **타입 안전성**: TypeScript 완전 지원
-- 🎨 **유연한 구성**: 다양한 라벨 형식 지원
-- ⚡ **성능 최적화**: 빠른 렌더링과 효율적인 메모리 사용
-
-## 데모
-
-프로젝트에는 다양한 데모 애플리케이션이 포함되어 있습니다:
-
-- **Web Demo**: 웹 브라우저에서 바로 테스트
-- **Electron Demo**: 데스크톱 애플리케이션 환경에서 테스트
-
-## 문서
-
-더 자세한 내용은 [시작하기 가이드](/guide/quick-start)를 참고하세요.
