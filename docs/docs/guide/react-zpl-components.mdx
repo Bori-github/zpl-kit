@@ -1,0 +1,38 @@
+# 컴포넌트 구조
+
+`ZplLabel.print()`는 ReactDOM.render가 아닙니다. JSX 트리를 DOM에 렌더링하는 대신, 컴포넌트 트리를 정적으로 순회해 ZPL 명령어로 변환합니다.
+
+## 파이프라인
+
+```
+JSX 트리                              LabelRootNode              ZPL 문자열
+
+<ZplLabel width={400} height={200}>
+  <Text fieldOriginX={10}>            { type: 'label',
+    Hello                    →          props: { ... },   →    ^XA^PW400^LL200
+  </Text>                               children: [             ^FO10,10^FD...
+  <Line direction="horizontal"            { type: 'text' },     ^XZ
+    length={300} />                       { type: 'line' }
+</ZplLabel>                             ]
+                                       }
+```
+
+`react-zpl`의 `ZplLabel.print()`는 두 단계로 동작합니다.
+
+```ts
+ZplLabel.print = (element) => {
+  const node = toLabelNode(element); // 1. ReactElement → LabelRootNode
+  return renderLabel(node);          // 2. LabelRootNode → ZPL (@zpl-kit/zpl-core)
+};
+```
+
+## 어댑터 역할
+
+`@zpl-kit/react-zpl`은 React 어댑터입니다. ZPL 생성 로직은 모두 `@zpl-kit/zpl-core`에 있으며, `react-zpl`은 JSX 트리를 `LabelRootNode`로 변환하는 역할만 합니다.
+
+| 패키지 | 역할 |
+|--------|------|
+| `@zpl-kit/zpl-core` | ZPL 생성 엔진 (순수 함수, React 없음) |
+| `@zpl-kit/react-zpl` | React 어댑터 (JSX → LabelNode → zpl-core 호출) |
+
+컴포넌트(`Text`, `Line` 등)는 실제 DOM에 렌더링되지 않습니다. ZPL 요소의 props를 선언하는 데이터 구조로만 동작하며, 서버/클라이언트 양쪽에서 사용할 수 있습니다.

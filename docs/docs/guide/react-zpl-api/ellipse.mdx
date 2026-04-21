@@ -1,0 +1,26 @@
+# Ellipse
+
+타원을 그립니다. 내부적으로 `^GE` 명령어를 사용합니다.
+
+## 사용 예시
+
+```tsx
+import { ZplLabel, Ellipse } from '@zpl-kit/react-zpl';
+
+ZplLabel.print(
+  <ZplLabel width={400} height={200}>
+    <Ellipse width={150} height={80} fieldOriginX={50} fieldOriginY={50} thickness={2} />
+  </ZplLabel>
+);
+```
+
+## Props
+
+| 속성 | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| `width` | `number` | 필수 | 너비 |
+| `height` | `number` | 필수 | 높이 |
+| `fieldOriginX` | `number` | `0` | X 좌표 |
+| `fieldOriginY` | `number` | `0` | Y 좌표 |
+| `thickness` | `number` | `1` | 두께 |
+| `lineColor` | `'B' \| 'W'` | `'B'` | 색상 |

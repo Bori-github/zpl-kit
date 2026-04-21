@@ -1,0 +1,30 @@
+# DiagonalLine
+
+대각선을 그립니다. 내부적으로 `^GD` 명령어를 사용합니다.
+
+## 사용 예시
+
+```tsx
+import { ZplLabel, DiagonalLine } from '@zpl-kit/react-zpl';
+
+ZplLabel.print(
+  <ZplLabel width={400} height={200}>
+    {/* 우하향 (기본) */}
+    <DiagonalLine width={100} height={100} fieldOriginX={10} fieldOriginY={10} />
+    {/* 우상향 */}
+    <DiagonalLine width={100} height={100} orientation="L" fieldOriginX={120} fieldOriginY={10} />
+  </ZplLabel>
+);
+```
+
+## Props
+
+| 속성 | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| `width` | `number` | 필수 | 너비 |
+| `height` | `number` | 필수 | 높이 |
+| `orientation` | `'R' \| 'L'` | `'R'` | `R`: 우하향, `L`: 우상향 |
+| `fieldOriginX` | `number` | `0` | X 좌표 |
+| `fieldOriginY` | `number` | `0` | Y 좌표 |
+| `thickness` | `number` | `1` | 두께 |
+| `lineColor` | `'B' \| 'W'` | `'B'` | 색상 |
