@@ -14,7 +14,6 @@
   },
   "zpl-core-installation",
   "zpl-core-getting-started",
-  "zpl-core-react-adapter",
   {
     "type": "dir",
     "name": "zpl-core-api",
