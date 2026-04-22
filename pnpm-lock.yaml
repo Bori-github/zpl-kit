@@ -29,12 +29,6 @@ importers:
       '@zpl-kit/zpl-core':
         specifier: workspace:*
         version: link:../zpl-core
-      react:
-        specifier: ^18.3.0
-        version: 18.3.1
-      react-dom:
-        specifier: ^18.3.0
-        version: 18.3.1(react@18.3.1)
     devDependencies:
       '@types/react':
         specifier: ^18.3.0
@@ -42,6 +36,12 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.7(@types/react@18.3.27)
+      react:
+        specifier: ^18.3.0
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.3.0
+        version: 18.3.1(react@18.3.1)
       rolldown:
         specifier: ^1.0.0-beta.51
         version: 1.0.0-beta.51
