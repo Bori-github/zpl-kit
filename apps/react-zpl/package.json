@@ -1,16 +1,28 @@
 {
   "name": "@zpl-kit/react-zpl",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.1.0-rc.1",
+  "author": "boriguri <qhflrnfl4324@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://boriguri.github.io/zpl-kit/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bori-github/zpl-kit.git",
+    "directory": "apps/react-zpl"
+  },
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "development": "./src/index.ts",
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
     }
   },
   "scripts": {
@@ -19,15 +31,15 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@zpl-kit/zpl-core": "workspace:*",
-    "react": "^18.3.0",
-    "react-dom": "^18.3.0"
+    "@zpl-kit/zpl-core": "workspace:*"
   },
   "devDependencies": {
     "rolldown": "^1.0.0-beta.51",
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
-    "typescript": "^5.7.0"
+    "typescript": "^5.7.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
   },
   "peerDependencies": {
     "react": "^18.0.0",

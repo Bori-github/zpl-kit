@@ -19,7 +19,8 @@ export default defineConfig({
     resolve: {
       alias: {
         '@renderer': resolve('src/renderer/src'),
-        '@zpl-kit/react-zpl': resolve('../../apps/react-zpl/src')
+        '@zpl-kit/react-zpl': resolve('../../apps/react-zpl/src'),
+        '@zpl-kit/zpl-core': resolve('../../apps/zpl-core/src')
       }
     },
     plugins: [react()],

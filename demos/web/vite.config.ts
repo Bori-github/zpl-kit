@@ -10,6 +10,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@zpl-kit/react-zpl': resolve(__dirname, '../../apps/react-zpl/src'),
+      '@zpl-kit/zpl-core': resolve(__dirname, '../../apps/zpl-core/src'),
     },
   },
   server: {

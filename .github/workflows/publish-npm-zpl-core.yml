@@ -1,0 +1,61 @@
+name: Publish @zpl-kit/zpl-core
+
+on:
+  push:
+    tags:
+      - 'zpl-core/v*'
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build zpl-core
+        run: pnpm --filter @zpl-kit/zpl-core build
+
+      - name: Build react-zpl
+        run: pnpm --filter @zpl-kit/react-zpl build
+
+      - name: Run tests
+        run: pnpm --filter @zpl-kit/tests test --run
+
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm --filter @zpl-kit/zpl-core build
+
+      - name: Publish
+        run: pnpm --filter @zpl-kit/zpl-core publish --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
