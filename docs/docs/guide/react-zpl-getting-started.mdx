@@ -27,8 +27,15 @@ import { ZplLabel, Text, Line, QrCode } from '@zpl-kit/react-zpl';
 
 const zpl = ZplLabel.print(
   <ZplLabel width={400} height={300}>
-    <Text fieldOriginX={10} fieldOriginY={10}>배송 라벨</Text>
-    <Line direction="horizontal" length={380} fieldOriginX={10} fieldOriginY={40} />
+    <Text fieldOriginX={10} fieldOriginY={10}>
+      배송 라벨
+    </Text>
+    <Line
+      direction="horizontal"
+      length={380}
+      fieldOriginX={10}
+      fieldOriginY={40}
+    />
     <QrCode fieldOriginX={10} fieldOriginY={60} magnification={5}>
       https://example.com
     </QrCode>
@@ -38,14 +45,70 @@ const zpl = ZplLabel.print(
 
 ## 지원하는 컴포넌트
 
-| 컴포넌트 | 설명 |
-|----------|------|
-| `ZplLabel` | 라벨 루트 컨테이너 |
-| `Text` | 텍스트 필드 |
-| `Line` | 수평/수직 직선 |
-| `DiagonalLine` | 대각선 |
-| `Circle` | 원 |
-| `Ellipse` | 타원 |
-| `QrCode` | QR 코드 |
+| 컴포넌트       | 설명               |
+| -------------- | ------------------ |
+| `ZplLabel`     | 라벨 루트 컨테이너 |
+| `Text`         | 텍스트 필드        |
+| `Line`         | 수평/수직 직선     |
+| `DiagonalLine` | 대각선             |
+| `Circle`       | 원                 |
+| `Ellipse`      | 타원               |
+| `QrCode`       | QR 코드            |
 
 전체 props는 [API Reference](/guide/react-zpl-api/zpl-label)를 참고하세요.
+
+## 라이브 데모
+
+아래 코드를 직접 수정하며 ZPL 출력을 확인해 보세요.
+
+```tsx live
+import { useState } from 'react';
+import { ZplLabel, Text } from '@zpl-kit/react-zpl';
+
+const element = (
+  <ZplLabel width={200} height={100}>
+    <Text fieldOriginX={0} fieldOriginY={0}>
+      Hello ZPL
+    </Text>
+  </ZplLabel>
+);
+
+export default function ExampleLabel() {
+  const [zpl, setZpl] = useState('');
+
+  const handleCreateZpl = () => {
+    const rawZpl = ZplLabel.print(element);
+    setZpl(rawZpl);
+  };
+
+  return (
+    <div style={{ width: '100%', padding: 16 }}>
+      <button
+        type="button"
+        onClick={handleCreateZpl}
+        style={{
+          padding: '8px 16px',
+          margin: '8px 0',
+          cursor: 'pointer',
+        }}
+      >
+        ZPL 생성
+      </button>
+      <pre
+        style={{
+          margin: 0,
+          padding: 12,
+          background: 'var(--rp-c-bg-soft)',
+          borderRadius: 6,
+          fontSize: 12,
+          overflow: 'auto',
+          whiteSpace: 'pre-wrap',
+          wordBreak: 'break-all',
+        }}
+      >
+        {zpl || '(버튼을 클릭하면 ZPL이 생성됩니다)'}
+      </pre>
+    </div>
+  );
+}
+```
