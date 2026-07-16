@@ -25,9 +25,7 @@ export function renderLine(props: LineCoreProps): string {
   } = props;
 
   if (length < MIN_LENGTH) {
-    throw new Error(
-      `renderLine: length는 ${MIN_LENGTH} 이상이어야 합니다. (length=${length})`
-    );
+    throw new Error(`renderLine: length는 ${MIN_LENGTH} 이상이어야 합니다. (length=${length})`);
   }
   if (thickness < MIN_THICKNESS) {
     throw new Error(

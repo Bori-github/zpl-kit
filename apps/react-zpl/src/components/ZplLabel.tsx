@@ -29,5 +29,5 @@ ZplLabel.displayName = 'ZplLabel';
 
 ZplLabel.print = (element) => {
   const node = toLabelNode(element); // ReactElement → LabelRootNode
-  return renderLabel(node);          // LabelRootNode → ZPL
+  return renderLabel(node); // LabelRootNode → ZPL
 };

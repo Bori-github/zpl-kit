@@ -21,29 +21,21 @@ describe('Circle', () => {
     });
 
     it('흰색 원(lineColor=W) 생성', () => {
-      expect(renderCircle({ diameter: 60, lineColor: 'W' })).toContain(
-        '^GC60,1,W^FS'
-      );
+      expect(renderCircle({ diameter: 60, lineColor: 'W' })).toContain('^GC60,1,W^FS');
     });
 
     it('채워진 원 (thickness >= diameter) 허용', () => {
-      expect(renderCircle({ diameter: 50, thickness: 50 })).toBe(
-        '^FO0,0\\&^GC50,50,B^FS'
-      );
+      expect(renderCircle({ diameter: 50, thickness: 50 })).toBe('^FO0,0\\&^GC50,50,B^FS');
     });
   });
 
   describe('renderCircle - 검증', () => {
     it('diameter < 3 시 에러 throw', () => {
-      expect(() => renderCircle({ diameter: 2 })).toThrow(
-        'diameter는 3~4095 사이여야 합니다'
-      );
+      expect(() => renderCircle({ diameter: 2 })).toThrow('diameter는 3~4095 사이여야 합니다');
     });
 
     it('diameter > 4095 시 에러 throw', () => {
-      expect(() => renderCircle({ diameter: 4096 })).toThrow(
-        'diameter는 3~4095 사이여야 합니다'
-      );
+      expect(() => renderCircle({ diameter: 4096 })).toThrow('diameter는 3~4095 사이여야 합니다');
     });
 
     it('thickness < 1 시 에러 throw', () => {

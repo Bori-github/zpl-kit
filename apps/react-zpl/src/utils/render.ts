@@ -1,10 +1,4 @@
-import {
-  Children,
-  ComponentClass,
-  FunctionComponent,
-  ReactElement,
-  ReactNode,
-} from 'react';
+import { Children, ComponentClass, FunctionComponent, ReactElement, ReactNode } from 'react';
 
 /**
  * React 엘리먼트를 렌더링하여 ReactNode 배열로 변환하는 함수
@@ -34,8 +28,7 @@ export const renderReactElement = (element: ReactElement): ReactNode[] => {
   let rendered: ReactNode | ReactNode[] = [];
 
   if (typeof element.type === 'function') {
-    const isClassComponent =
-      !!element.type.prototype && !!element.type.prototype.isReactComponent;
+    const isClassComponent = !!element.type.prototype && !!element.type.prototype.isReactComponent;
 
     rendered = isClassComponent
       ? new (element.type as ComponentClass)(element.props).render()

@@ -4,11 +4,10 @@ import { UTF8_ENCODING } from '../constants';
 
 type ChangeInternationalEncodingParams = string[] | undefined;
 
-export const changeInternationalEncoding =
-  defineCommand<ChangeInternationalEncodingParams>(
-    (characterSets = [UTF8_ENCODING]) => {
-      const joinedCharacterSets = characterSets.join(',');
+export const changeInternationalEncoding = defineCommand<ChangeInternationalEncodingParams>(
+  (characterSets = [UTF8_ENCODING]) => {
+    const joinedCharacterSets = characterSets.join(',');
 
-      return `^CI${joinedCharacterSets}`;
-    }
-  );
+    return `^CI${joinedCharacterSets}`;
+  }
+);

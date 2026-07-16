@@ -25,17 +25,8 @@ interface TextFontOwnCoreProps extends TextBaseCoreProps {
 
 export type TextCoreProps = TextFontInheritCoreProps | TextFontOwnCoreProps;
 
-export function renderText(
-  props: TextCoreProps,
-  context: ZplElementContext
-): string {
-  const {
-    text,
-    fieldOriginX = 0,
-    fieldOriginY = 0,
-    fieldOrientation,
-    fontInherit,
-  } = props;
+export function renderText(props: TextCoreProps, context: ZplElementContext): string {
+  const { text, fieldOriginX = 0, fieldOriginY = 0, fieldOrientation, fontInherit } = props;
 
   if (typeof text !== 'string') {
     throw new Error('renderText: text는 문자열이어야 합니다.');

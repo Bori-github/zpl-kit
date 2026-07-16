@@ -22,8 +22,7 @@ const MAX_MAGNIFICATION = 100;
  * @see https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-bq.html
  */
 export const barcodeQR = defineCommand<BarcodeQRParams>((params) => {
-  const { orientation, model, magnification, errorCorrection, maskValue } =
-    params;
+  const { orientation, model, magnification, errorCorrection, maskValue } = params;
 
   if (magnification < MIN_MAGNIFICATION || magnification > MAX_MAGNIFICATION) {
     throw new Error(
@@ -31,9 +30,7 @@ export const barcodeQR = defineCommand<BarcodeQRParams>((params) => {
     );
   }
   if (!Number.isInteger(maskValue) || maskValue < 0 || maskValue > 7) {
-    throw new Error(
-      `barcodeQR: maskValue는 0~7 정수여야 합니다. (maskValue=${maskValue})`
-    );
+    throw new Error(`barcodeQR: maskValue는 0~7 정수여야 합니다. (maskValue=${maskValue})`);
   }
   if (model !== 1 && model !== 2) {
     throw new Error(`barcodeQR: model은 1 또는 2여야 합니다. (model=${model})`);

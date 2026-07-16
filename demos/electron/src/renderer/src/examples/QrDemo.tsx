@@ -1,12 +1,7 @@
 import { QrCode, Text, ZplLabel } from '@zpl-kit/react-zpl'
 
 const QrDemoTemplate = () => (
-  <ZplLabel
-    width={400}
-    height={400}
-    defaultFontWidth={24}
-    defaultFontHeight={24}
-  >
+  <ZplLabel width={400} height={400} defaultFontWidth={24} defaultFontHeight={24}>
     <QrCode fieldOriginX={72} fieldOriginY={72} magnification={6}>
       https://example.com
     </QrCode>

@@ -1,10 +1,6 @@
 import { Children, isValidElement, ReactElement, ReactNode } from 'react';
 
-import {
-  ChildLabelNode,
-  LabelRootNode,
-  type LabelCoreProps,
-} from '@zpl-kit/zpl-core';
+import { ChildLabelNode, LabelRootNode, type LabelCoreProps } from '@zpl-kit/zpl-core';
 
 import { renderReactElement } from './render';
 

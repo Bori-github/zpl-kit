@@ -20,12 +20,26 @@ export default defineConfig({
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:site_name', content: '@zpl-kit' }],
     ['meta', { property: 'og:title', content: '@zpl-kit — Composable ZPL for modern JavaScript' }],
-    ['meta', { property: 'og:description', content: 'Core primitives for Node.js, declarative components for React. Build and preview ZPL labels.' }],
+    [
+      'meta',
+      {
+        property: 'og:description',
+        content:
+          'Core primitives for Node.js, declarative components for React. Build and preview ZPL labels.',
+      },
+    ],
     ['meta', { property: 'og:url', content: 'https://boriguri.github.io/zpl-kit/' }],
     // Twitter Card
     ['meta', { name: 'twitter:card', content: 'summary' }],
     ['meta', { name: 'twitter:title', content: '@zpl-kit — Composable ZPL for modern JavaScript' }],
-    ['meta', { name: 'twitter:description', content: 'Core primitives for Node.js, declarative components for React. Build and preview ZPL labels.' }],
+    [
+      'meta',
+      {
+        name: 'twitter:description',
+        content:
+          'Core primitives for Node.js, declarative components for React. Build and preview ZPL labels.',
+      },
+    ],
   ],
   themeConfig: {
     socialLinks: [
@@ -40,14 +54,8 @@ export default defineConfig({
   builderConfig: {
     resolve: {
       alias: {
-        '@zpl-kit/react-zpl': path.resolve(
-          __dirname,
-          '../apps/react-zpl/src/index.ts'
-        ),
-        '@zpl-kit/zpl-core': path.resolve(
-          __dirname,
-          '../apps/zpl-core/src/index.ts'
-        ),
+        '@zpl-kit/react-zpl': path.resolve(__dirname, '../apps/react-zpl/src/index.ts'),
+        '@zpl-kit/zpl-core': path.resolve(__dirname, '../apps/zpl-core/src/index.ts'),
       },
     },
   },
