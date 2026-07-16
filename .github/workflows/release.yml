@@ -1,0 +1,60 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'zpl-core/v*'
+      - 'react-zpl/v*'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: github-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: 태그에 맞는 패키지 이름·버전 (package.json 기준)
+        id: meta
+        run: |
+          set -euo pipefail
+          TAG="${GITHUB_REF_NAME}"
+          case "$TAG" in
+            zpl-core/v*)
+              NAME="$(node -p "require('./apps/zpl-core/package.json').name")"
+              VER="$(node -p "require('./apps/zpl-core/package.json').version")"
+              ;;
+            react-zpl/v*)
+              NAME="$(node -p "require('./apps/react-zpl/package.json').name")"
+              VER="$(node -p "require('./apps/react-zpl/package.json').version")"
+              ;;
+            *)
+              echo "지원하지 않는 태그: $TAG"
+              exit 1
+              ;;
+          esac
+          echo "name=${NAME}" >> "$GITHUB_OUTPUT"
+          echo "version=${VER}" >> "$GITHUB_OUTPUT"
+          echo "title=${NAME} v${VER}" >> "$GITHUB_OUTPUT"
+
+      - name: GitHub Release 생성
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          TAG="${GITHUB_REF_NAME}"
+          TITLE="${{ steps.meta.outputs.title }}"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "이미 존재하는 Release: $TAG — 스킵"
+            exit 0
+          fi
+          gh release create "$TAG" \
+            --title "$TITLE" \
+            --generate-notes
