@@ -10,6 +10,7 @@
     "url": "https://github.com/Bori-github/zpl-kit.git"
   },
   "type": "module",
+  "packageManager": "pnpm@10.29.2",
   "scripts": {
     "dev": "pnpm --filter './apps/*' dev",
     "demo:web": "pnpm --filter './demos/web' dev",
