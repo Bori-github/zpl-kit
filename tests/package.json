@@ -6,7 +6,8 @@
   "scripts": {
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "test:coverage": "vitest --coverage"
+    "test:coverage": "vitest --coverage",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@zpl-kit/react-zpl": "workspace:*",
