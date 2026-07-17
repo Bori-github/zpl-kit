@@ -9,10 +9,12 @@ on:
       - '.github/workflows/deploy-docs.yml'
   workflow_dispatch:
 
+# deploy 잡이 pages·id-token 권한을 자체 선언하므로 최상위는 읽기만 준다.
+# 최상위에 두면 build 잡까지 상속받는데, build는 pnpm install로 서드파티
+# lifecycle 스크립트를 실행하는 잡이다. id-token: write가 있으면 그 코드가
+# 설정된 클라우드 신뢰 정책에 대해 OIDC 토큰을 발급할 수 있다.
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages

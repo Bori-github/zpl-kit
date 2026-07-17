@@ -6,6 +6,11 @@ on:
       - 'react-zpl/v*'
   workflow_dispatch:
 
+# 두 잡 모두 레포 쓰기 권한이 필요 없다. publish 잡은 NPM_TOKEN을 들고 있으므로
+# GITHUB_TOKEN 범위는 최소로 둔다.
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
