@@ -6,6 +6,9 @@ on:
       - 'zpl-viewer/v*'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -22,8 +25,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # CLI 버전을 고정한다. `pnpm dlx vercel`은 매 실행마다 최신을 받아
+      # 프로덕션 토큰을 바로 넘기는 구조라 락파일도 무결성 검사도 없었다.
+      # 토큰은 --token= 인자 대신 VERCEL_TOKEN env로 넘긴다. 인자로 주면
+      # 러너의 process argv에 남아 같은 러너의 다른 프로세스에서 보인다.
       - name: Deploy to Vercel
-        run: pnpm dlx vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
+        run: pnpm dlx vercel@56.3.1 --prod --yes
         env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
