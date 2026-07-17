@@ -1,0 +1,76 @@
+name: CI
+
+# 경로 필터를 두지 않는다. 이전에는 apps/react-zpl·apps/zpl-core·tests만 트리거해서
+# docs·demos·zpl-viewer만 건드리는 PR이 검사 0건으로 통과했다.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# 검사만 하는 워크플로다. pnpm install이 의존성 lifecycle 스크립트를 실행하므로
+# GITHUB_TOKEN을 레포 기본값(쓰기 가능일 수 있음)으로 상속시키지 않는다.
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Lint & Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Format check
+        run: pnpm format:check
+
+  build-test:
+    name: Build, Types & Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # 두 패키지의 exports가 dist를 가리키므로 type-check·test 모두 빌드가 선행되어야 한다.
+      # react-zpl의 type-check는 zpl-core의 dist 타입을, tests는 react-zpl의 dist 타입을 참조한다.
+      - name: Build zpl-core
+        run: pnpm --filter @zpl-kit/zpl-core build
+
+      - name: Build react-zpl
+        run: pnpm --filter @zpl-kit/react-zpl build
+
+      - name: Type check
+        run: pnpm type-check
+
+      - name: Run tests
+        run: pnpm --filter @zpl-kit/tests test --run
+
+      # docs는 tsconfig가 없어 `pnpm -r type-check`가 조용히 건너뛴다.
+      # 빌드가 이 패키지의 유일한 검증 수단이고, 없으면 깨진 MDX·설정이
+      # 머지된 뒤 deploy-docs에서야 드러난다.
+      - name: Build docs
+        run: pnpm docs:build
