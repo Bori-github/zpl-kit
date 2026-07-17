@@ -25,7 +25,7 @@ const zpl = ZplLabel.print(
 );
 ```
 
-자세한 내용은 [문서](https://boriguri.github.io/zpl-kit/)를 참고해 주세요.
+자세한 내용은 [문서](https://bori-github.github.io/zpl-kit/)를 참고해 주세요.
 
 ## 프로젝트 구조
 
