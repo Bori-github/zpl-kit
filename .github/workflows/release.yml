@@ -1,0 +1,91 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'zpl-core/v*'
+      - 'react-zpl/v*'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: github-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: 태그에 맞는 패키지 이름·버전 (package.json 기준)
+        id: meta
+        run: |
+          set -euo pipefail
+          TAG="${GITHUB_REF_NAME}"
+          case "$TAG" in
+            zpl-core/v*)
+              NAME="$(node -p "require('./apps/zpl-core/package.json').name")"
+              VER="$(node -p "require('./apps/zpl-core/package.json').version")"
+              ;;
+            react-zpl/v*)
+              NAME="$(node -p "require('./apps/react-zpl/package.json').name")"
+              VER="$(node -p "require('./apps/react-zpl/package.json').version")"
+              ;;
+            *)
+              echo "지원하지 않는 태그: $TAG"
+              exit 1
+              ;;
+          esac
+          # 태그가 선언한 버전과 package.json 버전이 어긋나면 중단한다.
+          # 대조하지 않으면 zpl-core/v0.2.0 태그에 package.json이 0.1.0일 때
+          # 조용히 "v0.1.0" 제목의 Release가 생성된다.
+          TAG_VER="${TAG#*/v}"
+          if [ "$TAG_VER" != "$VER" ]; then
+            echo "태그 버전($TAG_VER)과 package.json 버전($VER)이 다릅니다: $TAG"
+            exit 1
+          fi
+          echo "name=${NAME}" >> "$GITHUB_OUTPUT"
+          echo "version=${VER}" >> "$GITHUB_OUTPUT"
+          echo "title=${NAME} v${VER}" >> "$GITHUB_OUTPUT"
+
+      - name: GitHub Release 생성
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # ${{ }}를 run 블록에 직접 보간하지 않고 env로 넘긴다.
+          # TITLE의 출처는 package.json의 name/version(태그 시점의 레포 내용)이라
+          # 따옴표가 섞이면 셸로 탈출할 수 있다.
+          TITLE: ${{ steps.meta.outputs.title }}
+        run: |
+          set -euo pipefail
+          TAG="${GITHUB_REF_NAME}"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "이미 존재하는 Release: $TAG — 스킵"
+            exit 0
+          fi
+
+          # --generate-notes만 쓰면 gh가 패키지와 무관하게 직전 "릴리즈"를 기준으로
+          # 삼는다. zpl-core/v*와 react-zpl/v*가 번갈아 나가므로, 그대로 두면
+          # react-zpl 릴리즈 노트에 zpl-core 커밋이 섞인다.
+          # 같은 네임스페이스 안에서 버전 순 바로 앞 태그를 시작점으로 준다.
+          # versionsort.suffix=-rc: git 기본 정렬은 v0.1.0을 v0.1.0-rc.1보다
+          # 앞에 두는데 semver는 그 반대다.
+          PREFIX="${TAG%%/*}"
+          PREV="$(git -c versionsort.suffix=-rc tag --list "${PREFIX}/v*" \
+            --sort=v:refname | awk -v cur="$TAG" '$0==cur{print prev; exit} {prev=$0}')"
+
+          if [ -n "$PREV" ]; then
+            echo "직전 태그: $PREV"
+            gh release create "$TAG" \
+              --title "$TITLE" \
+              --notes-start-tag "$PREV" \
+              --generate-notes
+          else
+            echo "$PREFIX의 첫 릴리즈 — 시작 태그 없이 생성"
+            gh release create "$TAG" \
+              --title "$TITLE" \
+              --generate-notes
+          fi

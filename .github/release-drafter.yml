@@ -1,0 +1,34 @@
+# Release Drafter: main 병합 PR 기준으로 GitHub "Draft" 릴리즈 본문을 갱신합니다.
+# npm/package.json 버전은 건드리지 않습니다 (버전·태그는 수동).
+#
+# PR에 GitHub 라벨을 달면 섹션으로 나눕니다: feature, fix, docs, chore
+# 어느 카테고리에도 없는 라벨의 PR은 별도 섹션 없이 목록 상단에 나열됩니다.
+
+name-template: 'zpl-kit — main 병합분 (초안 · 버전/태그는 수동)'
+
+# 배포용 태그는 사용하지 않음(초안만 갱신). $RESOLVED_VERSION 없이 제목을 고정합니다.
+# GitHub 쪽에서 동일 제목의 Draft 를 덮어쓰는 방식으로 사용합니다.
+
+change-template: '- $TITLE (#$NUMBER) @$AUTHOR'
+change-title-escapes: '\<*_&' # $TITLE에 특수문자
+
+categories:
+  - title: '✨ Features'
+    labels:
+      - 'feature'
+  - title: '🐛 Fixes'
+    labels:
+      - 'fix'
+  - title: '📚 Docs'
+    labels:
+      - 'docs'
+  - title: '🔧 Chore'
+    labels:
+      - 'chore'
+
+template: |
+  $CHANGES
+
+  ---
+
+  *npm: `zpl-core/v*`, `react-zpl/v*` 태그로 퍼블리시 · GitHub Release는 `release` 워크플로(태그)로 생성 가능 · 버전은 `package.json`/태그로 수동 관리*
