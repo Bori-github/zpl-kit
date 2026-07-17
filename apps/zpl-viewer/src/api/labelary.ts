@@ -101,11 +101,14 @@ export async function fetchLabelaryPng(
       }
 
       let message = `오류가 발생했습니다 (HTTP ${status})`;
-      try {
-        const text = await (e.response?.data as Blob).text();
-        if (text) message = text.substring(0, 200);
-      } catch {
-        // ignore
+      const data: unknown = e.response?.data;
+      if (data instanceof Blob) {
+        try {
+          const text = await data.text();
+          if (text) message = text.substring(0, 200);
+        } catch {
+          // Blob 본문을 읽지 못하면 위의 HTTP 상태 기본 메시지를 그대로 쓴다.
+        }
       }
       const err: ZplPreviewError = { code: 'BAD_REQUEST', message };
       throw err;
