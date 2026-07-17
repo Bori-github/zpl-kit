@@ -2,11 +2,11 @@
 
 ## 환경
 
-| 항목 | 값 |
-|------|----|
-| 러너 | Vitest (`tests/vitest.config.ts`) |
-| 실행 | `tests/` 디렉터리에서 `pnpm test` |
-| 환경 | `node` (기본값, jsdom/happy-dom 없음) |
+| 항목    | 값                                                                               |
+| ------- | -------------------------------------------------------------------------------- |
+| 러너    | Vitest (`tests/vitest.config.ts`)                                                |
+| 실행    | `tests/` 디렉터리에서 `pnpm test`                                                |
+| 환경    | `node` (기본값, jsdom/happy-dom 없음)                                            |
 | globals | `true` — `describe`, `it`, `expect` import 필요 없음 (하지만 명시적 import 권장) |
 
 ---
@@ -23,11 +23,11 @@
 
 ## 파일 명명 규칙
 
-| 대상 | 규칙 | 예시 |
-|------|------|------|
-| 컴포넌트 테스트 | `{ComponentName}.test.tsx` | `Barcode.test.tsx` |
-| command 테스트 | `{commandName}.test.tsx` | `barcode128.test.tsx` |
-| 유틸 테스트 | `{utilName}.test.tsx` | `imageToZpl.test.tsx` |
+| 대상            | 규칙                       | 예시                  |
+| --------------- | -------------------------- | --------------------- |
+| 컴포넌트 테스트 | `{ComponentName}.test.tsx` | `Barcode.test.tsx`    |
+| command 테스트  | `{commandName}.test.tsx`   | `barcode128.test.tsx` |
+| 유틸 테스트     | `{utilName}.test.tsx`      | `imageToZpl.test.tsx` |
 
 > `.tsx` 확장자는 JSX 유무와 관계없이 통일해서 사용한다.
 
@@ -134,9 +134,7 @@ describe('Barcode', () => {
         fieldOriginY: 20,
         height: 60,
       });
-      expect(Barcode.print(el, defaultLabelContext)).toBe(
-        '^FO10,20\\&^BCN,60,Y,N,N^FDABC^FS'
-      );
+      expect(Barcode.print(el, defaultLabelContext)).toBe('^FO10,20\\&^BCN,60,Y,N,N^FDABC^FS');
     });
 
     it('qr — ^BQ 명령어와 ^FD에 QA, 프리픽스 포함', () => {
@@ -156,9 +154,7 @@ describe('Barcode', () => {
   describe('print - 검증', () => {
     it('value가 빈 문자열이면 에러 throw', () => {
       const el = createElement(Barcode, { type: 'code128', value: '' });
-      expect(() => Barcode.print(el, defaultLabelContext)).toThrow(
-        'value는 비어있을 수 없습니다'
-      );
+      expect(() => Barcode.print(el, defaultLabelContext)).toThrow('value는 비어있을 수 없습니다');
     });
 
     it('ean13에 13자리가 아닌 값을 전달하면 에러 throw', () => {

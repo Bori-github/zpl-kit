@@ -5,9 +5,7 @@ import { Ellipse } from '@zpl-kit/react-zpl';
 describe('Ellipse', () => {
   describe('renderEllipse', () => {
     it('기본값으로 ^FO0,0\\&^GE{width},{height},1,B^FS 생성', () => {
-      expect(renderEllipse({ width: 80, height: 40 })).toBe(
-        '^FO0,0\\&^GE80,40,1,B^FS'
-      );
+      expect(renderEllipse({ width: 80, height: 40 })).toBe('^FO0,0\\&^GE80,40,1,B^FS');
     });
 
     it('fieldOrigin, thickness, lineColor 지정 시 올바른 ZPL 생성', () => {
@@ -24,9 +22,7 @@ describe('Ellipse', () => {
     });
 
     it('흰색 타원(lineColor=W) 생성', () => {
-      expect(renderEllipse({ width: 80, height: 40, lineColor: 'W' })).toContain(
-        '^GE80,40,1,W^FS'
-      );
+      expect(renderEllipse({ width: 80, height: 40, lineColor: 'W' })).toContain('^GE80,40,1,W^FS');
     });
   });
 
@@ -56,9 +52,9 @@ describe('Ellipse', () => {
     });
 
     it('thickness > 4095 시 에러 throw', () => {
-      expect(() =>
-        renderEllipse({ width: 80, height: 40, thickness: 4096 })
-      ).toThrow('thickness는 1~4095 사이여야 합니다');
+      expect(() => renderEllipse({ width: 80, height: 40, thickness: 4096 })).toThrow(
+        'thickness는 1~4095 사이여야 합니다'
+      );
     });
   });
 

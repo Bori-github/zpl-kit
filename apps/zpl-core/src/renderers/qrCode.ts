@@ -13,10 +13,7 @@ export interface QrCodeCoreProps {
   maskValue?: number;
 }
 
-export function renderQrCode(
-  props: QrCodeCoreProps,
-  context: ZplElementContext
-): string {
+export function renderQrCode(props: QrCodeCoreProps, context: ZplElementContext): string {
   const {
     text,
     fieldOriginX = 0,

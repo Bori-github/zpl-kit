@@ -24,17 +24,15 @@ describe('Line', () => {
     });
 
     it('흰색 라인(lineColor=W) 생성', () => {
-      expect(
-        renderLine({ length: 50, direction: 'horizontal', lineColor: 'W' })
-      ).toContain('^GB50,1,1,W,0^FS');
+      expect(renderLine({ length: 50, direction: 'horizontal', lineColor: 'W' })).toContain(
+        '^GB50,1,1,W,0^FS'
+      );
     });
   });
 
   describe('renderLine - 수직선', () => {
     it('기본값으로 ^FO{x},{y}^GB0,{length},1,B,0^FS 생성', () => {
-      expect(renderLine({ length: 50, direction: 'vertical' })).toBe(
-        '^FO0,0\\&^GB1,50,1,B,0^FS'
-      );
+      expect(renderLine({ length: 50, direction: 'vertical' })).toBe('^FO0,0\\&^GB1,50,1,B,0^FS');
     });
 
     it('fieldOrigin, thickness 지정 시 올바른 ZPL 생성', () => {
@@ -64,9 +62,9 @@ describe('Line', () => {
     });
 
     it('thickness < 1 시 에러 throw', () => {
-      expect(() =>
-        renderLine({ length: 100, direction: 'horizontal', thickness: 0 })
-      ).toThrow('thickness는 1 이상이어야 합니다');
+      expect(() => renderLine({ length: 100, direction: 'horizontal', thickness: 0 })).toThrow(
+        'thickness는 1 이상이어야 합니다'
+      );
     });
   });
 

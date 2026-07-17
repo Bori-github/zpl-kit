@@ -26,10 +26,7 @@ export function renderEllipse(props: EllipseCoreProps): string {
     lineColor = COLOR.BLACK,
   } = props;
 
-  if (
-    width < MIN_SIZE || width > MAX_SIZE ||
-    height < MIN_SIZE || height > MAX_SIZE
-  ) {
+  if (width < MIN_SIZE || width > MAX_SIZE || height < MIN_SIZE || height > MAX_SIZE) {
     throw new Error(
       `renderEllipse: width와 height는 ${MIN_SIZE}~${MAX_SIZE} 사이여야 합니다. (width=${width}, height=${height})`
     );

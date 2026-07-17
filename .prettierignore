@@ -7,3 +7,11 @@ build
 coverage
 *.min.js
 pnpm-lock.yaml
+
+# 벤더링된 서드파티 참고 구현 — 원본 그대로 유지한다
+references
+
+# 빌드 산출물
+out
+docs/doc_build
+.vercel

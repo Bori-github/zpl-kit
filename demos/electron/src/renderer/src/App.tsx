@@ -1,11 +1,6 @@
 import { useState } from 'react'
 
-import {
-  graphicsShowcaseZpl,
-  priceTagZpl,
-  qrDemoZpl,
-  shippingLabelZpl,
-} from './examples'
+import { graphicsShowcaseZpl, priceTagZpl, qrDemoZpl, shippingLabelZpl } from './examples'
 
 import './App.css'
 
@@ -26,7 +21,7 @@ async function zplToPng(
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: zpl,
+      body: zpl
     }
   )
 
@@ -45,9 +40,9 @@ const EXAMPLES = [
     label: '그래픽 쇼케이스',
     generate: graphicsShowcaseZpl,
     widthMm: 75,
-    heightMm: 62.5,
+    heightMm: 62.5
   },
-  { label: 'QR 코드', generate: qrDemoZpl, widthMm: 50, heightMm: 50 },
+  { label: 'QR 코드', generate: qrDemoZpl, widthMm: 50, heightMm: 50 }
 ] as const
 
 const PLACEHOLDER_ZPL = `^XA
@@ -115,7 +110,7 @@ function App(): React.JSX.Element {
                 onClick={() => handleLoadExample(index)}
                 style={{
                   fontWeight: activeIndex === index ? 'bold' : 'normal',
-                  marginRight: 8,
+                  marginRight: 8
                 }}
               >
                 {example.label}
@@ -132,15 +127,15 @@ function App(): React.JSX.Element {
 
           <h2>ZPL 직접 입력</h2>
           <p className="privacy-notice">
-            ⚠️ 미리보기는 Labelary API(외부 서버)를 사용합니다. ZPL 내용이
-            api.labelary.com으로 전송됩니다.
+            ⚠️ 미리보기는 Labelary API(외부 서버)를 사용합니다. ZPL 내용이 api.labelary.com으로
+            전송됩니다.
           </p>
           <div
             style={{
               marginBottom: 12,
               display: 'flex',
               gap: 12,
-              flexWrap: 'wrap',
+              flexWrap: 'wrap'
             }}
           >
             <label>
@@ -169,9 +164,7 @@ function App(): React.JSX.Element {
               dpmm:{' '}
               <select
                 value={dpmm}
-                onChange={(e) =>
-                  setDpmm(Number(e.target.value) as 6 | 8 | 12 | 24)
-                }
+                onChange={(e) => setDpmm(Number(e.target.value) as 6 | 8 | 12 | 24)}
               >
                 {DPMM_OPTIONS.map((d) => (
                   <option key={d} value={d}>
@@ -192,7 +185,7 @@ function App(): React.JSX.Element {
               fontSize: 12,
               padding: 8,
               marginBottom: 12,
-              resize: 'vertical',
+              resize: 'vertical'
             }}
           />
           <button
@@ -211,11 +204,7 @@ function App(): React.JSX.Element {
           )}
           {imageUrl && !loading && (
             <div style={{ marginTop: 16 }}>
-              <img
-                src={imageUrl}
-                alt="ZPL 미리보기"
-                style={{ maxWidth: '100%' }}
-              />
+              <img src={imageUrl} alt="ZPL 미리보기" style={{ maxWidth: '100%' }} />
             </div>
           )}
         </div>

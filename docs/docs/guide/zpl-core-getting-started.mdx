@@ -41,21 +41,18 @@ const context = createLabelContext({
   defaultFontHeight: 20,
 });
 
-const zpl = renderText(
-  { text: '기본 폰트 상속', fieldOriginX: 10, fieldOriginY: 10 },
-  context
-);
+const zpl = renderText({ text: '기본 폰트 상속', fieldOriginX: 10, fieldOriginY: 10 }, context);
 ```
 
 ## 지원하는 요소
 
-| type | 설명 | renderer |
-|------|------|----------|
-| `text` | 텍스트 | `renderText` |
-| `line` | 수평/수직 직선 | `renderLine` |
-| `diagonalLine` | 대각선 | `renderDiagonalLine` |
-| `circle` | 원 | `renderCircle` |
-| `ellipse` | 타원 | `renderEllipse` |
-| `qrCode` | QR 코드 | `renderQrCode` |
+| type           | 설명           | renderer             |
+| -------------- | -------------- | -------------------- |
+| `text`         | 텍스트         | `renderText`         |
+| `line`         | 수평/수직 직선 | `renderLine`         |
+| `diagonalLine` | 대각선         | `renderDiagonalLine` |
+| `circle`       | 원             | `renderCircle`       |
+| `ellipse`      | 타원           | `renderEllipse`      |
+| `qrCode`       | QR 코드        | `renderQrCode`       |
 
 전체 props는 [API Reference](/guide/zpl-core-api/render-label)를 참고하세요.

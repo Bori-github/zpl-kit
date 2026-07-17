@@ -14,8 +14,6 @@ export interface QrCodeProps extends PropsWithChildren {
   maskValue?: number;
 }
 
-export const QrCode = ({ children }: QrCodeProps) => (
-  <span>{children}</span>
-);
+export const QrCode = ({ children }: QrCodeProps) => <span>{children}</span>;
 
 QrCode.displayName = 'QrCode';

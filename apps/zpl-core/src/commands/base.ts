@@ -4,9 +4,7 @@
  * - `P`가 `void`이면 사용자가 전달할 매개변수가 없으므로 단순히 문자열을 반환하는 함수가 됩니다.
  * - `P`가 객체 타입이면 `params`로 해당 속성을 전달하여 명령 문자열을 동적으로 구성합니다.
  */
-export type Command<P = void> = P extends void
-  ? () => string
-  : (params: P) => string;
+export type Command<P = void> = P extends void ? () => string : (params: P) => string;
 
 /**
  * 명령어 생성을 담당하는 실제 구현 함수 타입

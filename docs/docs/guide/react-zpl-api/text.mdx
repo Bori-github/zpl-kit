@@ -10,7 +10,9 @@ import { ZplLabel, Text } from '@zpl-kit/react-zpl';
 // 기본 폰트 상속
 ZplLabel.print(
   <ZplLabel width={400} height={200}>
-    <Text fieldOriginX={10} fieldOriginY={10}>기본 폰트</Text>
+    <Text fieldOriginX={10} fieldOriginY={10}>
+      기본 폰트
+    </Text>
   </ZplLabel>
 );
 
@@ -33,13 +35,13 @@ ZplLabel.print(
 
 ## Props
 
-| 속성 | 타입 | 기본값 | 설명 |
-|------|------|--------|------|
-| `children` | `string` | 필수 | 출력할 텍스트 |
-| `fieldOriginX` | `number` | `0` | X 좌표 |
-| `fieldOriginY` | `number` | `0` | Y 좌표 |
-| `fieldOrientation` | `'N' \| 'R' \| 'I' \| 'B'` | `ZplLabel` 상속 | 필드 방향 |
-| `fontInherit` | `boolean` | `true` | `ZplLabel` 기본 폰트 상속 여부 |
-| `fontName` | `string` | — | 폰트명 (`fontInherit: false` 시 필수) |
-| `fontWidth` | `number` | — | 폰트 너비 (`fontInherit: false` 시 필수) |
-| `fontHeight` | `number` | — | 폰트 높이 (`fontInherit: false` 시 필수) |
+| 속성               | 타입                       | 기본값          | 설명                                     |
+| ------------------ | -------------------------- | --------------- | ---------------------------------------- |
+| `children`         | `string`                   | 필수            | 출력할 텍스트                            |
+| `fieldOriginX`     | `number`                   | `0`             | X 좌표                                   |
+| `fieldOriginY`     | `number`                   | `0`             | Y 좌표                                   |
+| `fieldOrientation` | `'N' \| 'R' \| 'I' \| 'B'` | `ZplLabel` 상속 | 필드 방향                                |
+| `fontInherit`      | `boolean`                  | `true`          | `ZplLabel` 기본 폰트 상속 여부           |
+| `fontName`         | `string`                   | —               | 폰트명 (`fontInherit: false` 시 필수)    |
+| `fontWidth`        | `number`                   | —               | 폰트 너비 (`fontInherit: false` 시 필수) |
+| `fontHeight`       | `number`                   | —               | 폰트 높이 (`fontInherit: false` 시 필수) |

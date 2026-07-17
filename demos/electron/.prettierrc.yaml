@@ -1,3 +1,5 @@
+# Prettier는 설정을 상속하지 않으므로 루트와 겹치는 키도 모두 명시해야 한다.
+# 루트와의 차이: semi(false), trailingComma(none) — electron-vite 스캐폴드 스타일.
 singleQuote: true
 semi: false
 printWidth: 100

@@ -20,9 +20,7 @@ describe('QrCode', () => {
     });
 
     it('빈 문자열 시 에러 throw', () => {
-      expect(() =>
-        renderQrCode({ text: '' }, defaultLabelContext)
-      ).toThrow(/빈 문자열/);
+      expect(() => renderQrCode({ text: '' }, defaultLabelContext)).toThrow(/빈 문자열/);
     });
 
     it('fieldOrientation 지정 시 ^BQ에 반영', () => {

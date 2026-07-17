@@ -5,9 +5,7 @@ import { DiagonalLine } from '@zpl-kit/react-zpl';
 describe('DiagonalLine', () => {
   describe('renderDiagonalLine - 대각선', () => {
     it('기본값으로 ^FO{x},{y}^GD{w},{h},{t},{c},{o}^FS 생성', () => {
-      expect(renderDiagonalLine({ width: 30, height: 30 })).toBe(
-        '^FO0,0\\&^GD30,30,1,B,R^FS'
-      );
+      expect(renderDiagonalLine({ width: 30, height: 30 })).toBe('^FO0,0\\&^GD30,30,1,B,R^FS');
     });
 
     it('fieldOrigin, thickness, orientation 지정 시 올바른 ZPL 생성', () => {
@@ -24,15 +22,15 @@ describe('DiagonalLine', () => {
     });
 
     it('orientation R (우하향) 생성', () => {
-      expect(
-        renderDiagonalLine({ width: 20, height: 20, orientation: 'R' })
-      ).toContain('^GD20,20,1,B,R^FS');
+      expect(renderDiagonalLine({ width: 20, height: 20, orientation: 'R' })).toContain(
+        '^GD20,20,1,B,R^FS'
+      );
     });
 
     it('orientation L (우상향) 생성', () => {
-      expect(
-        renderDiagonalLine({ width: 20, height: 20, orientation: 'L' })
-      ).toContain('^GD20,20,1,B,L^FS');
+      expect(renderDiagonalLine({ width: 20, height: 20, orientation: 'L' })).toContain(
+        '^GD20,20,1,B,L^FS'
+      );
     });
   });
 
@@ -50,9 +48,9 @@ describe('DiagonalLine', () => {
     });
 
     it('thickness < 1 시 에러 throw', () => {
-      expect(() =>
-        renderDiagonalLine({ width: 30, height: 30, thickness: 0 })
-      ).toThrow('thickness는 1 이상이어야 합니다');
+      expect(() => renderDiagonalLine({ width: 30, height: 30, thickness: 0 })).toThrow(
+        'thickness는 1 이상이어야 합니다'
+      );
     });
   });
 

@@ -3,7 +3,7 @@
 원을 그립니다. `^GC` 명령어를 사용합니다.
 
 ```ts
-function renderCircle(props: CircleCoreProps): string
+function renderCircle(props: CircleCoreProps): string;
 ```
 
 ## 사용 예시
@@ -21,10 +21,10 @@ const zpl = renderCircle({
 
 ## Props
 
-| 속성 | 타입 | 기본값 | 설명 |
-|------|------|--------|------|
-| `diameter` | `number` | 필수 | 지름 (3~4095) |
-| `fieldOriginX` | `number` | `0` | X 좌표 |
-| `fieldOriginY` | `number` | `0` | Y 좌표 |
-| `thickness` | `number` | `1` | 두께 (1~4095) |
-| `lineColor` | `'B' \| 'W'` | `'B'` | 색상 |
+| 속성           | 타입         | 기본값 | 설명          |
+| -------------- | ------------ | ------ | ------------- |
+| `diameter`     | `number`     | 필수   | 지름 (3~4095) |
+| `fieldOriginX` | `number`     | `0`    | X 좌표        |
+| `fieldOriginY` | `number`     | `0`    | Y 좌표        |
+| `thickness`    | `number`     | `1`    | 두께 (1~4095) |
+| `lineColor`    | `'B' \| 'W'` | `'B'`  | 색상          |

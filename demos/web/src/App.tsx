@@ -1,11 +1,6 @@
 import { useState } from 'react';
 
-import {
-  graphicsShowcaseZpl,
-  priceTagZpl,
-  qrDemoZpl,
-  shippingLabelZpl,
-} from './examples';
+import { graphicsShowcaseZpl, priceTagZpl, qrDemoZpl, shippingLabelZpl } from './examples';
 
 import './App.css';
 
@@ -132,8 +127,8 @@ function App() {
 
           <h2>ZPL 직접 입력</h2>
           <p className="privacy-notice">
-            ⚠️ 미리보기는 Labelary API(외부 서버)를 사용합니다. ZPL 내용이
-            api.labelary.com으로 전송됩니다.
+            ⚠️ 미리보기는 Labelary API(외부 서버)를 사용합니다. ZPL 내용이 api.labelary.com으로
+            전송됩니다.
           </p>
           <div
             style={{
@@ -169,9 +164,7 @@ function App() {
               dpmm:{' '}
               <select
                 value={dpmm}
-                onChange={(e) =>
-                  setDpmm(Number(e.target.value) as 6 | 8 | 12 | 24)
-                }
+                onChange={(e) => setDpmm(Number(e.target.value) as 6 | 8 | 12 | 24)}
               >
                 {DPMM_OPTIONS.map((d) => (
                   <option key={d} value={d}>
@@ -211,11 +204,7 @@ function App() {
           )}
           {imageUrl && !loading && (
             <div style={{ marginTop: 16 }}>
-              <img
-                src={imageUrl}
-                alt="ZPL 미리보기"
-                style={{ maxWidth: '100%' }}
-              />
+              <img src={imageUrl} alt="ZPL 미리보기" style={{ maxWidth: '100%' }} />
             </div>
           )}
         </div>

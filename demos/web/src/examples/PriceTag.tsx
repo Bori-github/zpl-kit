@@ -1,11 +1,4 @@
-import {
-  Circle,
-  DiagonalLine,
-  Ellipse,
-  Line,
-  Text,
-  ZplLabel,
-} from '@zpl-kit/react-zpl';
+import { Circle, DiagonalLine, Ellipse, Line, Text, ZplLabel } from '@zpl-kit/react-zpl';
 
 /**
  * 가격표 (400 x 300 dots)
@@ -30,41 +23,12 @@ const PriceTagTemplate = ({
   sku: string;
   discountPercent: number;
 }) => (
-  <ZplLabel
-    width={400}
-    height={300}
-    defaultFontWidth={28}
-    defaultFontHeight={28}
-  >
+  <ZplLabel width={400} height={300} defaultFontWidth={28} defaultFontHeight={28}>
     {/* 테두리 (4변) */}
-    <Line
-      direction="horizontal"
-      length={380}
-      fieldOriginX={10}
-      fieldOriginY={10}
-      thickness={2}
-    />
-    <Line
-      direction="horizontal"
-      length={380}
-      fieldOriginX={10}
-      fieldOriginY={288}
-      thickness={2}
-    />
-    <Line
-      direction="vertical"
-      length={280}
-      fieldOriginX={10}
-      fieldOriginY={10}
-      thickness={2}
-    />
-    <Line
-      direction="vertical"
-      length={280}
-      fieldOriginX={388}
-      fieldOriginY={10}
-      thickness={2}
-    />
+    <Line direction="horizontal" length={380} fieldOriginX={10} fieldOriginY={10} thickness={2} />
+    <Line direction="horizontal" length={380} fieldOriginX={10} fieldOriginY={288} thickness={2} />
+    <Line direction="vertical" length={280} fieldOriginX={10} fieldOriginY={10} thickness={2} />
+    <Line direction="vertical" length={280} fieldOriginX={388} fieldOriginY={10} thickness={2} />
 
     {/* 모서리 대각선 장식 */}
     <DiagonalLine
@@ -97,13 +61,7 @@ const PriceTagTemplate = ({
     </Text>
 
     {/* 상품명 하단 구분선 */}
-    <Line
-      direction="horizontal"
-      length={350}
-      fieldOriginX={25}
-      fieldOriginY={68}
-      thickness={1}
-    />
+    <Line direction="horizontal" length={350} fieldOriginX={25} fieldOriginY={68} thickness={1} />
 
     {/* 정가 (취소선 효과: 위아래 얇은 선) */}
     <Text
@@ -116,22 +74,10 @@ const PriceTagTemplate = ({
     >
       {originalPrice}
     </Text>
-    <Line
-      direction="horizontal"
-      length={80}
-      fieldOriginX={25}
-      fieldOriginY={97}
-      thickness={1}
-    />
+    <Line direction="horizontal" length={80} fieldOriginX={25} fieldOriginY={97} thickness={1} />
 
     {/* 가격 강조 타원 */}
-    <Ellipse
-      width={200}
-      height={60}
-      fieldOriginX={80}
-      fieldOriginY={115}
-      thickness={3}
-    />
+    <Ellipse width={200} height={60} fieldOriginX={80} fieldOriginY={115} thickness={3} />
 
     {/* 판매가 */}
     <Text
@@ -146,13 +92,7 @@ const PriceTagTemplate = ({
     </Text>
 
     {/* SKU 구분선 */}
-    <Line
-      direction="horizontal"
-      length={350}
-      fieldOriginX={25}
-      fieldOriginY={200}
-      thickness={1}
-    />
+    <Line direction="horizontal" length={350} fieldOriginX={25} fieldOriginY={200} thickness={1} />
 
     {/* SKU */}
     <Text
@@ -167,12 +107,7 @@ const PriceTagTemplate = ({
     </Text>
 
     {/* 할인 뱃지 (채워진 원 + 텍스트) */}
-    <Circle
-      diameter={70}
-      fieldOriginX={305}
-      fieldOriginY={195}
-      thickness={70}
-    />
+    <Circle diameter={70} fieldOriginX={305} fieldOriginY={195} thickness={70} />
     <Text
       fieldOriginX={308}
       fieldOriginY={215}

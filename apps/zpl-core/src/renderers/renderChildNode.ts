@@ -6,17 +6,11 @@ import { renderLine } from './line';
 import { renderQrCode } from './qrCode';
 import { renderText } from './text';
 
-export function renderChildren(
-  nodes: ChildLabelNode[],
-  context: ZplElementContext
-): string[] {
+export function renderChildren(nodes: ChildLabelNode[], context: ZplElementContext): string[] {
   return nodes.map((node) => renderChildNode(node, context));
 }
 
-export function renderChildNode(
-  node: ChildLabelNode,
-  context: ZplElementContext
-): string {
+export function renderChildNode(node: ChildLabelNode, context: ZplElementContext): string {
   switch (node.type) {
     case 'text':
       return renderText(node.props, context);
