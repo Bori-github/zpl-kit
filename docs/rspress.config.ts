@@ -28,7 +28,7 @@ export default defineConfig({
           'Core primitives for Node.js, declarative components for React. Build and preview ZPL labels.',
       },
     ],
-    ['meta', { property: 'og:url', content: 'https://boriguri.github.io/zpl-kit/' }],
+    ['meta', { property: 'og:url', content: 'https://bori-github.github.io/zpl-kit/' }],
     // Twitter Card
     ['meta', { name: 'twitter:card', content: 'summary' }],
     ['meta', { name: 'twitter:title', content: '@zpl-kit — Composable ZPL for modern JavaScript' }],
