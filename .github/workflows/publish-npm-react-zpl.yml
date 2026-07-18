@@ -39,6 +39,11 @@ jobs:
   publish:
     needs: test
     runs-on: ubuntu-latest
+    # provenance(--provenance)의 OIDC 서명에 id-token이 필요하다. test 잡은
+    # 쓰지 않으므로 워크플로 기본값(contents: read)을 두고 여기서만 부여한다.
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@v6
 
@@ -60,6 +65,26 @@ jobs:
         run: pnpm --filter @zpl-kit/react-zpl build
 
       - name: Publish
-        run: pnpm --filter @zpl-kit/react-zpl publish --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          set -euo pipefail
+          NAME="$(node -p "require('./apps/react-zpl/package.json').name")"
+          VERSION="$(node -p "require('./apps/react-zpl/package.json').version")"
+          # 이미 올라간 버전이면 재발행하지 않는다. npm은 덮어쓰기를 막으므로
+          # 재실행·재태그 시 잡 전체가 실패하는 걸 방지한다.
+          if npm view "${NAME}@${VERSION}" version >/dev/null 2>&1; then
+            echo "이미 publish된 버전: ${NAME}@${VERSION} — 스킵"
+            exit 0
+          fi
+          # 프리릴리즈(0.1.0-rc.1 등)는 latest가 아닌 rc dist-tag로 발행한다.
+          case "$VERSION" in
+            *-*) NPM_TAG="rc" ;;
+            *)   NPM_TAG="latest" ;;
+          esac
+          # workspace:^ 의존성은 pnpm publish가 발행 시 범위 핀으로 치환한다.
+          # --provenance: id-token 권한으로 공급 출처 증명을 첨부.
+          pnpm --filter @zpl-kit/react-zpl publish \
+            --no-git-checks \
+            --provenance \
+            --tag "${NPM_TAG}"
