@@ -27,7 +27,7 @@ importers:
   apps/react-zpl:
     dependencies:
       '@zpl-kit/zpl-core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../zpl-core
     devDependencies:
       '@types/react':
