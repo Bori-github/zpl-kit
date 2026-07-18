@@ -67,6 +67,9 @@ jobs:
       - name: Publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # provenance 생성을 트리거하는 실제 스위치. pnpm 10.x의 --provenance
+          # 플래그는 npm CLI로 위임되며 no-op이라, env로 켜야 서명이 첨부된다.
+          NPM_CONFIG_PROVENANCE: true
         run: |
           set -euo pipefail
           NAME="$(node -p "require('./apps/react-zpl/package.json').name")"
@@ -83,7 +86,7 @@ jobs:
             *)   NPM_TAG="latest" ;;
           esac
           # workspace:^ 의존성은 pnpm publish가 발행 시 범위 핀으로 치환한다.
-          # --provenance: id-token 권한으로 공급 출처 증명을 첨부.
+          # 공급 출처 증명은 위 NPM_CONFIG_PROVENANCE env가 켠다.
           pnpm --filter @zpl-kit/react-zpl publish \
             --no-git-checks \
             --provenance \
