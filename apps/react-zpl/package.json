@@ -31,7 +31,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@zpl-kit/zpl-core": "workspace:*"
+    "@zpl-kit/zpl-core": "workspace:^"
   },
   "devDependencies": {
     "rolldown": "^1.0.0-beta.51",

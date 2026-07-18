@@ -6,5 +6,5 @@ export default defineConfig({
     format: 'es',
     dir: 'dist',
   },
-  external: ['react', 'react-dom', /^react\//, /^react-dom\//],
+  external: ['react', 'react-dom', /^react\//, /^react-dom\//, /^@zpl-kit\//],
 });
